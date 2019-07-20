@@ -23,19 +23,27 @@ if(isset($_SESSION['login'])==false) {
 require_once('../mysqlconf.php');
 
 try {
-    $staff_code = $_GET['staffcode'];
+    $pro_code = $_GET['procode'];
 
     $dbh = new_pdo();
 
-    $sql = 'SELECT name FROM mst_staff WHERE code=?';
+    $sql = 'SELECT name,price,image FROM mst_product WHERE code=?';
     $stmt = $dbh->prepare($sql);
-    $data[] = $staff_code;
+    $data[] = $pro_code;
     $stmt->execute($data);
 
     $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-    $staff_name = $rec['name'];
+    $pro_name = $rec['name'];
+    $pro_price = $rec['price'];
+    $pro_image_name = $rec['image'];
 
     $dbh = null;
+
+    if($pro_image_name == '') {
+        $disp_image = '';
+    } else {
+        $disp_image = '<img src="./images/'.$pro_image_name.'">';
+    }
 } catch (Exception $e) {
     print 'ただいま障害により大変ご迷惑をおかけしております。';
     exit();
@@ -43,18 +51,24 @@ try {
 
 ?>
 
-スタッフ修正<br />
+商品削除<br />
 <br>
-スタッフコード<br>
-<?php print $staff_code; ?>
-<br>
-<br>
-スタッフ名<br>
-<?php print $staff_name; ?>
+商品コード<br>
+<?php print $pro_code; ?>
 <br>
 <br>
-<form>
+商品名<br>
+<?php print $pro_name;?><br>
+価格<br>
+<?php print $pro_price;?><br>
+<?php print $disp_image;?><br>
+この商品を削除してよろしいですか？<br>
+<br>
+<form method="post" action="pro_delete_done.php">
+    <input type="hidden" name="code" value="<?php print $pro_code; ?>">
+    <input type="hidden" name="image_name" value="<?php print $pro_image_name; ?>">
     <input type="button" onclick="history.back()" value="戻る">
+    <input type="submit" value="OK">
 </form>
 </body>
 </html>

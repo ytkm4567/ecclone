@@ -19,17 +19,18 @@ if(isset($_SESSION['login'])==false) {
     print 'さんログイン中<br>';
     print '<br>';
 }
+
 ?>
 
-スタッフ追加<br>
+商品追加<br>
 <br>
-<form method="post" action="staff_add_check.php">
-    スタッフ名を入力してください。<br>
+<form method="post" action="pro_add_check.php" enctype="multipart/form-data">
+    商品名を入力してください。<br>
     <input type="text" name="name" style="width:200px"><br>
-    パスワードを入力してください。<br>
-    <input type="password" name="pass" style="width:100px"><br>
-    パスワードをもう一度入力してください。<br>
-    <input type="password" name="pass2" style="width:100px"><br>
+    価格を入力してください。<br>
+    <input type="text" name="price" style="width:50px"><br>
+    画像を選択してください。<br>
+    <input type="file" name="image" style="width:400px"><br>
     <br>
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="OK">

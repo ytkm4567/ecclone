@@ -25,9 +25,8 @@ require_once('../mysqlconf.php');
 
 try {
     $post = sanitize($_POST);
-    $staff_code = $post['code'];
-    $staff_name = $post['name'];
-    $staff_pass = $post['pass'];
+    $pro_code = $post['code'];
+    $pro_image_name = $post['image_name'];
 
     // データベースへの接続
     $dbh = new_pdo();
@@ -35,12 +34,10 @@ try {
     /*
      * SQL文の実行
      */
-    $sql = 'UPDATE mst_staff SET name=?, password=? WHERE code=?';
+    $sql = 'DELETE FROM mst_product WHERE code=?';
     // PDOStatmentオブジェクトを生成
     $stmt = $dbh->prepare($sql);
-    $data[] = $staff_name;
-    $data[] = $staff_pass;
-    $data[] = $staff_code;
+    $data[] = $pro_code;
     // SQL文を実行
     $stmt->execute($data);
 
@@ -49,7 +46,11 @@ try {
      */
     $dbh = null;
 
-    print '修正しました。<br><br>';
+    if($pro_image_name !== '') {
+        unlink('./images/'.$pro_image_name);
+    }
+
+    print '削除しました。<br><br>';
 
 } catch(Exception $e) {
     print 'ただいま障害により大変ご迷惑をおかけしております。';
@@ -58,6 +59,6 @@ try {
 }
 ?>
 
-<a href="staff_list.php">戻る</a>
+<a href="pro_list.php">戻る</a>
 </body>
 </html>

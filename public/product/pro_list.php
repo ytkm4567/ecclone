@@ -25,23 +25,24 @@ require_once('../mysqlconf.php');
 try {
     $dbh = new_pdo();
 
-    $sql = 'SELECT code,name FROM mst_staff WHERE 1';
+    $sql = 'SELECT code,name,price FROM mst_product WHERE 1';
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
 
     $dbh = null;
 
-    print 'スタッフ一覧<br><br>';
+    print '商品一覧<br><br>';
 
-    print '<form method="post" action="staff_branch.php">';
+    print '<form method="post" action="pro_branch.php">';
     while(true) {
         // SQL statementの結果から配列を生成して格納
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
         if($rec==false) {
             break;
         }
-        print '<input type="radio" name="staffcode" value="'.$rec['code'].'">';
+        print '<input type="radio" name="procode" value="'.$rec['code'].'">';
         print $rec['name'];
+        print '---'.$rec['price'].'円';
         print '<br>';
     }
     print '<input type="submit" name="disp" value="参照">';
