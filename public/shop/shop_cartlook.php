@@ -96,5 +96,10 @@ try {
 </form>
 <br>
 <a href="shop_form.html">ご購入手続きへ進む</a><br>
+<?php
+if(isset($_SESSION["member_login"])==true) {
+    print '<a href="shop_kantan_check.php">かんたん注文へ進む</a>';
+}
+?>
 </body>
 </html>

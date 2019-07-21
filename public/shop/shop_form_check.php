@@ -18,12 +18,12 @@ $postal1 = $post['postal1'];
 $postal2 = $post['postal2'];
 $address = $post['address'];
 $tel = $post['tel'];
-/*$chumon = $post['chumon'];
+$chumon = $post['chumon'];
 $pass = $post['pass'];
 $pass2 = $post['pass2'];
-$danjo = $post['danjo'];
+$gender = $post['gender'];
 $birth = $post['birth'];
-*/
+
 $okflg = true;
 
 if($onamae=='') {
@@ -70,7 +70,7 @@ if(preg_match('/\A\d{2,5}-?\d{2,5}-?\d{4,5}\z/', $tel)==0){
     print $tel;
     print '<br><br>';
 }
-/*
+
 if($chumon=='chumontouroku') {
     if($pass=='') {
         print 'パスワードが入力されていません。<br><br>';
@@ -83,7 +83,7 @@ if($chumon=='chumontouroku') {
     }
 
     print '性別<br>';
-    if($danjo=='dan') {
+    if($gender=='male') {
         print '男性';
     } else {
         print '女性';
@@ -95,7 +95,7 @@ if($chumon=='chumontouroku') {
     print '年代';
     print '<br><br>';
 }
-*/
+
 if($okflg == true) {
     print '<form method="post" action="shop_form_done.php">';
     print '<input type="hidden" name="onamae" value="'.$onamae.'">';
@@ -104,11 +104,11 @@ if($okflg == true) {
     print '<input type="hidden" name="postal2" value="'.$postal2.'">';
     print '<input type="hidden" name="address" value="'.$address.'">';
     print '<input type="hidden" name="tel" value="'.$tel.'">';
-    /*print '<input type="hidden" name="chumon" value="'.$chumon.'">';
+    print '<input type="hidden" name="chumon" value="'.$chumon.'">';
     print '<input type="hidden" name="pass" value="'.$pass.'">';
-    print '<input type="hidden" name="danjo" value="'.$danjo.'">';
+    print '<input type="hidden" name="gender" value="'.$gender.'">';
     print '<input type="hidden" name="birth" value="'.$birth.'">';
-    */print '<input type="button" onclick="history.back()" value="戻る">';
+    print '<input type="button" onclick="history.back()" value="戻る">';
     print '<input type="submit" value="OK"><br>';
     print '</form>';
 } else {

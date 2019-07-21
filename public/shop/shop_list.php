@@ -16,7 +16,7 @@ if(isset($_SESSION['member_login'])==false) {
     print '<br>';
 } else {
     print 'ようこそ'.$_SESSION['member_name'].'様';
-    print '<a href="../member/member_logout.html">ログアウト</a><br>';
+    print '<a href="../member/member_logout.php">ログアウト</a><br>';
     print '<br>';
 }
 
