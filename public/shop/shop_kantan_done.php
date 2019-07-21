@@ -19,6 +19,8 @@ if(isset($_SESSION['member_login'])==false) {
 
 require_once('../common.php');
 require_once('../mysqlconf.php');
+require_once('../mailtext.php');
+
 
 try {
     $post = sanitize($_POST);
@@ -39,18 +41,16 @@ try {
     print $tel.'<br>';
 
     // 自動返信メールの文章
-    $honbun='';
-    $honbun.=$onamae."様 \n\nこの度はご注文ありがとうございました。\n";
-    $honbun.="\n";
-    $honbun.="ご注文商品\n";
-    $honbun.="-----------------------------------\n";
+    $honbun = order_header($onamae);
 
+    // カート内の情報を変数へ格納
     $cart=$_SESSION['cart'];
     $quantity=$_SESSION['quantity'];
     $max=count($cart);
 
     $dbh = new_pdo();
 
+    // 商品情報をデータベースから読み出し
     for($i=0;$i<$max;$i++) {
         $sql = 'SELECT name,price FROM mst_product WHERE code=?';
         $stmt = $dbh->prepare($sql);
@@ -117,41 +117,15 @@ try {
 
     $dbh = null;
 
-
-    $honbun.="送料は無料です。\n";
-    $honbun.="-----------------------------------\n";
-    $honbun.="\n";
-    $honbun.="代金は以下の口座にお振り込みください。\n";
-    $honbun.="ろくまる銀行 やさい支店 普通口座 1234567\n";
-    $honbun.="入金確認が取れ次第、梱包、発送させていただきます。\n";
-    $honbun.="\n";
-
-    $honbun.="□□□□□□□□□□□□□□□□□□□\n";
-    $honbun.="〜安心野菜のろくまる農園〜\n";
-    $honbun.="\n";
-    $honbun.="北海道河東郡上士幌町123-4\n";
-    $honbun.="電話 01564-2-1234\n";
-    $honbun.="メール info@rokumarunouen.co.jp\n";
-    $honbun.="□□□□□□□□□□□□□□□□□□□\n";
-
-    //print '<br>';
-    //print nl2br($honbun);
+    // 入金先、署名を本文に追加
+    $honbun .= order_kouza();
+    $honbun .= order_footer();
 
     // お客様向けメール
-    $title = 'ご注文ありがとうございます。';
-    $header = 'From:info@rokumarunouen.co.jp';
-    $honbun = html_entity_decode($honbun, ENT_QUOTES, 'UTF-8');
-    mb_language('Japanese');
-    mb_internal_encoding('UTF-8');
-    mb_send_mail($email, $title, $honbun, $header);
+    autosend_mail($email, 'ご注文ありがとうございます', $honbun, 'From:info@rokumarunouen.co.jp');
 
     // お店宛てメール
-    $title = 'お客様からご注文がありました。';
-    $header = 'From:'.$email;
-    $honbun = html_entity_decode($honbun, ENT_QUOTES, 'UTF-8');
-    mb_language('Japanese');
-    mb_internal_encoding('UTF-8');
-    mb_send_mail('ytkm555@gmail.com', $title, $honbun, $header);
+    autosend_mail('ytkm555@gmail.com', 'お客様からご注文がありました。', $honbun, 'From:'.$email);
 } catch(Exception $e) {
     print $e.'<br>';
     print 'ただいま障害により大変ご迷惑をおかけしております。';
