@@ -33,7 +33,7 @@ try {
     $dbh = null;
 
     if($pro_image_name == '') {
-        $disp_image = '';
+        $disp_image = '<img src="../product/images/no_image.jpg">';
     } else {
         $disp_image = '<img src="./images/'.$pro_image_name.'">';
     }

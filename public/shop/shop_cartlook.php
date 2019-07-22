@@ -47,7 +47,7 @@ try {
         $pro_name[] = $rec['name'];
         $pro_price[] = $rec['price'];
         if($rec['image']=='') {
-            $pro_image[] = '';
+            $pro_image[] = '<img src="../product/images/no_image.jpg">';
         } else {
             $pro_image[] = '<img src="../product/images/'.$rec['image'].'">';
         }

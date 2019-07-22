@@ -32,8 +32,8 @@ try {
 
     $dbh = null;
 
-    if($pro_image_name_old === '') {
-        $disp_image = '';
+    if($pro_image_name_old == '') {
+        $disp_image = '<img src="../product/images/no_image.jpg">';
     } else {
         $disp_image = '<img src="./images/'.$pro_image_name_old.'">';
     }
