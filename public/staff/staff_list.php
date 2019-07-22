@@ -13,7 +13,7 @@ require_once('../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
-staff_login_check();
+check_staff_login();
 
 try {
     $dbh = new_pdo();

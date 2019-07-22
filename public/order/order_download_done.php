@@ -4,7 +4,7 @@ require_once('../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
-staff_login_check();
+check_staff_login();
 ?>
 
 <!DOCTYPE html>
@@ -89,9 +89,9 @@ try {
         $csv.="\n";
     }
 
-    // print nl2br($csv);
+    $filename = './'.$year.'_'.$month.'_'.$day.'_'.bin2hex(openssl_random_pseudo_bytes(8)).'.csv';
 
-    $file = fopen('./chumon.csv','w');
+    $file = fopen($filename,'w');
     $csv = mb_convert_encoding($csv, 'SJIS', 'UTF-8');
     fputs($file, $csv);
     fclose($file);
@@ -102,7 +102,7 @@ try {
 }
 ?>
 
-<a href="chumon.csv">注文データのダウンロード</a><br>
+<a href="<?php print $filename; ?>">注文データのダウンロード</a><br>
 <br>
 <a href="order_download.php">日付選択へ</a><br>
 <br>

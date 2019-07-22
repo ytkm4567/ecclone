@@ -12,7 +12,7 @@ require_once('../common.php');
 
 session_start();
 session_regenerate_id(true);
-staff_login_check();
+check_staff_login();
 
 ?>
 

@@ -3,9 +3,9 @@
 // 汎用的な機能をもつ関数群
 
 /*
- * staff_login_check() : 管理者としてログインしているかどうか判定する
+ * check_staff_login() : 管理者としてログインしているかどうか判定する
  */
-function staff_login_check() {
+function check_staff_login() {
     if(isset($_SESSION['login'])==false) {
         print 'ログインが必要です。<br>';
         print '<a href="../staff_login/staff_login.html">ログイン画面へ</a>';
@@ -55,8 +55,10 @@ function check_csrf_token() {
 }
 
 /*
- * sanitize() : 送信されてきた値をエスケープする
- * $before : 配列（$_POSTなど）
+ * 送信されてきた値からHTML特殊文字をエスケープする
+ * 
+ * @param $before 配列（$_POSTなど）
+ * @return $after 処理された文字列
  */
 function sanitize($before) {
     foreach($before as $key => $value) {
