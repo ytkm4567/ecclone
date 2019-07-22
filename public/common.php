@@ -18,6 +18,34 @@ function staff_login_check() {
 }
 
 /*
+ * member_login_check() : 会員としてログインしているかどうか判定する
+ */
+function member_login_check() {
+    if(isset($_SESSION['member_login'])==false) {
+        print 'ようこそ、ゲスト様　';
+        print '<a href="../member/member_login.html">ログイン画面へ</a><br>';
+        print '<br>';
+    } else {
+        print 'ようこそ'.$_SESSION['member_name'].'様';
+        print '<a href="../member/member_logout.php">ログアウト</a><br>';
+        print '<br>';
+    }
+}
+
+/*
+ * trans_page_judge() : 正しいページからの遷移かどうか判定する
+ * $postdata : $_POSTで送られてくるデータ
+ */
+function trans_page_judge($postdata) {
+    if(!isset($_SESSION['trans_page_flg']) || !isset($postdata)) {
+        print '不正遷移です。<br>';
+        print 'このページへの直接のアクセスは禁止されています。<br>';
+        print '<a href="../index.php">トップページへ</a>';
+        exit();
+    }
+}
+
+/*
  * sanitize() : 送信されてきた値をエスケープする
  * $before : 配列（$_POSTなど）
  */
@@ -25,7 +53,9 @@ function sanitize($before) {
     foreach($before as $key => $value) {
         $after[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     }
-    return $after;
+    if (isset($after)) {
+        return $after;
+    }
 }
 
 /*

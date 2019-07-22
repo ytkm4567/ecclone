@@ -1,3 +1,12 @@
+<?php
+require_once('../common.php');
+require_once('../mysqlconf.php');
+
+session_start();
+session_regenerate_id(true);
+
+member_login_check();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,21 +16,6 @@
 <body>
 
 <?php
-
-session_start();
-session_regenerate_id(true);
-if(isset($_SESSION['member_login'])==false) {
-    print 'ようこそ、ゲスト様　';
-    print '<a href="../member/member_login.html">ログイン画面へ</a><br>';
-    print '<br>';
-} else {
-    print 'ようこそ'.$_SESSION['member_name'].'様';
-    print '<a href="../member/member_logout.html">ログアウト</a><br>';
-    print '<br>';
-}
-
-require_once('../mysqlconf.php');
-
 try {
     $pro_code = $_GET['procode'];
 

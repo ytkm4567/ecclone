@@ -1,11 +1,10 @@
 <?php
+require_once('../common.php');
+require_once('../mysqlconf.php');
+
 session_start();
 session_regenerate_id(true);
-if(isset($_SESSION['member_login'])==false) {
-    print 'ログインされていません。<br>';
-    print '<a href="shop_list.php">商品一覧へ</a>';
-    exit();
-}
+$_SESSION['trans_page_flg'] = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,10 +15,6 @@ if(isset($_SESSION['member_login'])==false) {
 <body>
 
 <?php
-
-require_once('../common.php');
-require_once('../mysqlconf.php');
-
 $code = $_SESSION['member_code'];
 
 $dbh = new_pdo();

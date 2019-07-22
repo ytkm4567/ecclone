@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION['trans_page_flg'] = 1;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +51,7 @@
     </select>
     <br>
     <br>
+
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="OK"><br>
 </form>

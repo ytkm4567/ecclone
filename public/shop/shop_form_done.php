@@ -1,6 +1,15 @@
 <?php
+require_once('../common.php');
+require_once('../mysqlconf.php');
+require_once('../mailtext.php');
+
 session_start();
 session_regenerate_id(true);
+
+$post = sanitize($_POST);
+
+trans_page_judge($post['onamae']);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,13 +21,7 @@ session_regenerate_id(true);
 
 <?php
 
-require_once('../common.php');
-require_once('../mysqlconf.php');
-require_once('../mailtext.php');
-
 try {
-    $post = sanitize($_POST);
-
     $onamae = $post['onamae'];
     $email = $post['email'];
     $postal1 = $post['postal1'];
@@ -158,12 +161,16 @@ try {
 
     // お店宛てメールを送信
     autosend_mail('ytkm555@gmail.com', 'お客様からご注文がありました。', $honbun, 'From:'.$email);
+
+    // ページ遷移フラグとカート内情報のセッション変数を解放
+    unset($_SESSION['trans_page_flg']);
+    unset($_SESSION['cart']);
+    unset($_SESSION['quantity']);
 } catch(Exception $e) {
     print $e.'<br>';
     print 'ただいま障害により大変ご迷惑をおかけしております。';
     exit();
 }
-
 ?>
 
 <br>

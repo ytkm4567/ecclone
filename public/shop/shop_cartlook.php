@@ -1,3 +1,12 @@
+<?php
+require_once('../common.php');
+require_once('../mysqlconf.php');
+
+session_start();
+session_regenerate_id(true);
+
+member_login_check();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,20 +16,6 @@
 <body>
 
 <?php
-
-session_start();
-session_regenerate_id(true);
-if(isset($_SESSION['member_login'])==false) {
-    print 'ようこそ、ゲスト様　';
-    print '<a href="../member/member_login.html">ログイン画面へ</a><br>';
-    print '<br>';
-} else {
-    print 'ようこそ'.$_SESSION['member_name'].'様';
-    print '<a href="../member/member_logout.html">ログアウト</a><br>';
-    print '<br>';
-}
-
-require_once('../mysqlconf.php');
 
 try {
     if(isset($_SESSION['cart'])==true) {
@@ -40,6 +35,7 @@ try {
 
     $dbh = new_pdo();
 
+    // 商品情報をデータベースから読み出し
     foreach($cart as $key => $val) {
         $sql = 'SELECT code,name,price,image FROM mst_product WHERE code=?';
         $stmt = $dbh->prepare($sql);
@@ -95,7 +91,7 @@ try {
     <input type="button" onclick="history.back()" value="戻る">
 </form>
 <br>
-<a href="shop_form.html">ご購入手続きへ進む</a><br>
+<a href="shop_form.php">ご購入手続きへ進む</a><br>
 <?php
 if(isset($_SESSION["member_login"])==true) {
     print '<a href="shop_kantan_check.php">かんたん注文へ進む</a>';

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +14,8 @@
 require_once('../common.php');
 
 $post = sanitize($_POST);
+
+trans_page_judge($post['onamae']);
 
 $onamae = $post['onamae'];
 $email = $post['email'];
