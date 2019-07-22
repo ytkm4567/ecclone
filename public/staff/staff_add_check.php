@@ -12,6 +12,8 @@ require_once('../common.php');
 
 session_start();
 session_regenerate_id(true);
+
+check_csrf_token();
 staff_login_check();
 
 $post = sanitize($_POST);
@@ -46,7 +48,8 @@ if($staff_name === '' || $staff_pass === '' || $staff_pass !== $staff_pass2) {
     print '<form method="post" action="staff_add_done.php">';
     print '<input type="hidden" name="name" value="'.$staff_name.'">';
     print '<input type="hidden" name="pass" value="'.$staff_pass.'">';
-    print '<br />';
+    print '<br>';
+    generate_csrf_token();
     print '<input type="button" onclick="history.back()" value="戻る">';
     print '<input type="submit" value="OK">';
     print '</form>';

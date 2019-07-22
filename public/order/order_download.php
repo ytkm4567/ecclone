@@ -7,6 +7,8 @@
 <body>
 
 <?php
+require_once('../common.php');
+
 session_start();
 session_regenerate_id(true);
 if(isset($_SESSION['login'])==false) {
@@ -27,10 +29,6 @@ if(isset($_SESSION['login'])==false) {
 <title>ろくまる農園</title>
 </head>
 <body>
-
-<?php
-require_once('../common.php');
-?>
 
 ダウンロードしたい注文日を選んでください。<br>
 <form method="post" action="order_download_done.php">

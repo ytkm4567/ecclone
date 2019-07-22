@@ -1,3 +1,12 @@
+<?php
+require_once('../common.php');
+require_once('../mysqlconf.php');
+
+session_start();
+session_regenerate_id(true);
+check_csrf_token();
+staff_login_check();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +16,6 @@
 <body>
 
 <?php
-
-require_once('../common.php');
-require_once('../mysqlconf.php');
-
-session_start();
-session_regenerate_id(true);
-staff_login_check();
-
 try {
     $post = sanitize($_POST);
     $pro_code = $post['code'];

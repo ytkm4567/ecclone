@@ -33,12 +33,21 @@ function member_login_check() {
 }
 
 /*
- * trans_page_judge() : 正しいページからの遷移かどうか判定する
- * $postdata : $_POSTで送られてくるデータ
+ * generate_csrf_token() : CSRFトークンを発行する
+ */ 
+function generate_csrf_token() {
+    $token_byte = openssl_random_pseudo_bytes(16);
+    $csrf_token = bin2hex($token_byte);
+    $_SESSION['csrf_token'] = $csrf_token;
+    print '<input type="hidden" name="csrf_token" value="'.$csrf_token.'">';
+}
+
+/*
+ * check_csrf_token() : 正しいページからのアクセスかどうか判定する
  */
-function trans_page_judge($postdata) {
-    if(!isset($_SESSION['trans_page_flg']) || !isset($postdata)) {
-        print '不正遷移です。<br>';
+function check_csrf_token() {
+    if(!isset($_POST["csrf_token"]) && $_POST["csrf_token"] !== $_SESSION['csrf_token']) {
+        print '不正なアクセスです。<br>';
         print 'このページへの直接のアクセスは禁止されています。<br>';
         print '<a href="../index.php">トップページへ</a>';
         exit();

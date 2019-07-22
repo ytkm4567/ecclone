@@ -1,3 +1,14 @@
+<?php
+require_once('../common.php');
+
+session_start();
+session_regenerate_id(true);
+
+check_csrf_token();
+staff_login_check();
+
+$post = sanitize($_POST);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +18,6 @@
 <body>
 
 <?php
-
-require_once('../common.php');
-
-session_start();
-session_regenerate_id(true);
-staff_login_check();
-
-$post = sanitize($_POST);
 $pro_code = $post['code'];
 $pro_name = $post['name'];
 $pro_price = $post['price'];
@@ -60,6 +63,7 @@ if($pro_name === '' || preg_match('/\A[0-9]+\z/', $pro_price) === 0 || $pro_imag
     print '<input type="hidden" name="image_name_old" value="'.$pro_image_name_old.'">';
     print '<input type="hidden" name="image_name" value="'.$pro_image['name'].'">';
     print '<br />';
+    generate_csrf_token();
     print '<input type="button" onclick="history.back()" value="戻る">';
     print '<input type="submit" value="OK">';
     print '</form>';

@@ -14,6 +14,8 @@ require_once('../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
+
+check_csrf_token();
 staff_login_check();
 
 try {
@@ -21,6 +23,15 @@ try {
     $staff_name = $post['name'];
     $staff_pass = $post['pass'];
 
+    // 入力が不正な場合戻るボタンのみ表示する
+    if($staff_name === '' || $staff_pass === '') {
+        print '入力が不正です。';
+        print '<form>';
+        print '<input type="button" onclick="history.back()" value="戻る">';
+        print '</form>';
+        exit();
+    }
+    
     // データベースへの接続
     $dbh = new_pdo();
 

@@ -8,7 +8,7 @@ session_regenerate_id(true);
 
 $post = sanitize($_POST);
 
-trans_page_judge($post['onamae']);
+check_csrf_token();
 
 ?>
 <!DOCTYPE html>
@@ -32,6 +32,27 @@ try {
     $pass = $post['pass'];
     $gender = $post['gender'];
     $birth = $post['birth'];
+
+    if($onamae=='' || preg_match('/\A[\w\-\.]+\@[\w\-\.]+\.([a-z]+)\z/',$email)==0 || 
+    preg_match('/\A[0-9]+\z/', $postal1)==0 && preg_match('/\A[0-9]+\z/', $postal2)==0 || 
+    $address=='' || preg_match('/\A\d{2,5}-?\d{2,5}-?\d{4,5}\z/', $tel)==0) {
+        print '入力が不正です。';
+        print '<form>';
+        print '<input type="button" onclick="history.back()" value="戻る">';
+        print '</form>';
+        exit();
+    }
+
+    
+    if($chumon=='chumontouroku') {
+        if($pass=='') {
+            print '入力が不正です。';
+            print '<form>';
+            print '<input type="button" onclick="history.back()" value="戻る">';
+            print '</form>';
+            exit();
+        }
+    }
 
     print $onamae.'様<br>';
     print 'ご注文ありがとうございました。<br>';

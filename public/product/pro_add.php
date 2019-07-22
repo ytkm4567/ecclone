@@ -1,3 +1,11 @@
+<?php
+require_once('../common.php');
+require_once('../mysqlconf.php');
+
+session_start();
+session_regenerate_id(true);
+staff_login_check();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,17 +13,6 @@
 <title>ECClone</title>
 </head>
 <body>
-
-<?php
-
-require_once('../common.php');
-require_once('../mysqlconf.php');
-
-session_start();
-session_regenerate_id(true);
-staff_login_check();
-
-?>
 
 商品追加<br>
 <br>
@@ -27,6 +24,7 @@ staff_login_check();
     画像を選択してください。<br>
     <input type="file" name="image" style="width:400px"><br>
     <br>
+    <?php generate_csrf_token(); ?>
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="OK">
 </form>

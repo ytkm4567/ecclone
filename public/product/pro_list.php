@@ -1,3 +1,11 @@
+<?php
+require_once('../common.php');
+require_once('../mysqlconf.php');
+
+session_start();
+session_regenerate_id(true);
+staff_login_check();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +15,6 @@
 <body>
 
 <?php
-
-require_once('../common.php');
-require_once('../mysqlconf.php');
-
-session_start();
-session_regenerate_id(true);
-staff_login_check();
-
 try {
     $dbh = new_pdo();
 

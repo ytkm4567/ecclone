@@ -15,7 +15,7 @@ require_once('../common.php');
 
 $post = sanitize($_POST);
 
-trans_page_judge($post['onamae']);
+check_csrf_token();
 
 $onamae = $post['onamae'];
 $email = $post['email'];
@@ -103,6 +103,7 @@ if($chumon=='chumontouroku') {
 
 if($okflg == true) {
     print '<form method="post" action="shop_form_done.php">';
+    generate_csrf_token();
     print '<input type="hidden" name="onamae" value="'.$onamae.'">';
     print '<input type="hidden" name="email" value="'.$email.'">';
     print '<input type="hidden" name="postal1" value="'.$postal1.'">';

@@ -1,6 +1,6 @@
 <?php
+require_once('../common.php');
 session_start();
-$_SESSION['trans_page_flg'] = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,7 +51,7 @@ $_SESSION['trans_page_flg'] = 1;
     </select>
     <br>
     <br>
-
+    <?php generate_csrf_token(); ?>
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="OK"><br>
 </form>

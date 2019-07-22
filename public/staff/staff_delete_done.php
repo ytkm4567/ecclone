@@ -13,6 +13,8 @@ require_once('../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
+
+check_csrf_token();
 staff_login_check();
 
 try {

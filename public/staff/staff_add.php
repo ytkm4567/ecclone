@@ -25,6 +25,7 @@ staff_login_check();
     パスワードをもう一度入力してください。<br>
     <input type="password" name="pass2" style="width:100px"><br>
     <br>
+    <?php generate_csrf_token(); ?>
     <input type="button" onclick="history.back()" value="戻る">
     <input type="submit" value="OK">
 </form>

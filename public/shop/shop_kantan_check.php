@@ -4,7 +4,6 @@ require_once('../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
-$_SESSION['trans_page_flg'] = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,6 +46,7 @@ print '<input type="hidden" name="postal1" value="'.$postal1.'">';
 print '<input type="hidden" name="postal2" value="'.$postal2.'">';
 print '<input type="hidden" name="address" value="'.$address.'">';
 print '<input type="hidden" name="tel" value="'.$tel.'">';
+generate_csrf_token();
 
 print '<input type="button" onclick="history.back()" value="戻る">';
 print '<input type="submit" value="OK"><br>';
