@@ -18,27 +18,6 @@ function check_staff_login() {
 }
 
 /*
- * member_login_check() : 会員としてログインしているかどうか判定しナビバーに表示する
- */
-function member_login_check() {
-    if(isset($_SESSION['member_login'])==false) {
-        print 'ようこそ、ゲスト様　';
-        print '</a>';
-        print '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
-        print '<a class="dropdown-item" href="/shop/shop_cartlook.php">カートを見る</a>';
-        print '<a class="dropdown-item" href="/member/member_login.html">会員ログイン</a>';
-        print '</div>';
-    } else {
-        print 'ようこそ'.$_SESSION['member_name'].'様';
-        print '</a>';
-        print '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
-        print '<a class="dropdown-item" href="/shop/shop_cartlook.php">カートを見る</a>';
-        print '<a class="dropdown-item" href="/member/member_logout.php">ログアウト</a>';
-        print '</div>';
-    }
-}
-
-/*
  * generate_csrf_token() : CSRFトークンを発行する
  */ 
 function generate_csrf_token() {
