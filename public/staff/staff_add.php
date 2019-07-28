@@ -1,32 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>ECClone</title>
-</head>
-<body>
-
 <?php
 require_once(dirname ( __FILE__ ).'/../common.php');
 
 session_start();
 session_regenerate_id(true);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ECClone</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/stylesheet.css">
+</head>
+<body>
+
+<?php
 check_staff_login();
+
+include(dirname ( __FILE__ ).'/../staff_navbar.php');
 ?>
 
-スタッフ追加<br>
-<br>
-<form method="post" action="staff_add_check.php">
-    スタッフ名を入力してください。<br>
-    <input type="text" name="name" style="width:200px"><br>
-    パスワードを入力してください。<br>
-    <input type="password" name="pass" style="width:100px"><br>
-    パスワードをもう一度入力してください。<br>
-    <input type="password" name="pass2" style="width:100px"><br>
-    <br>
+<form method="post" action="/staff/staff_add_check.php">
+<div class="card card-margin">
+  <h5 class="card-header alert-success">スタッフ追加</h5>
+  <div class="card-body">
+    <div class="form-group">
+        <label for="name">スタッフ名：</label>
+        <input type="text" name="name" class="form-control my-form" placeholder="スタッフ名を入力してください。">
+    </div>
+    <div class="form-group">
+        <label for="pass">パスワード：</label>
+        <input type="password" name="pass" class="form-control my-form" placeholder="パスワードを入力してください。">
+    </div>
+    <div class="form-group">
+        <label for="pass">パスワード（確認用）：</label>
+        <input type="password" name="pass2" class="form-control my-form" placeholder="パスワードをもう一度入力してください。">
+    </div>
     <?php generate_csrf_token(); ?>
-    <input type="button" onclick="history.back()" value="戻る">
-    <input type="submit" value="OK">
+    <a href="/staff/staff_list.php" class="btn btn-secondary btn-margin">戻る</a>
+    <input type="submit" class="btn btn-primary btn-to-decide" value="入力内容の確認">
 </form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

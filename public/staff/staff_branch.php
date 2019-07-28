@@ -1,12 +1,9 @@
 <?php
+require_once(dirname ( __FILE__ ).'/../common.php');
 
 session_start();
 session_regenerate_id(true);
-if(isset($_SESSION['login'])==false) {
-    print 'ログインが必要です。<br>';
-    print '<a href="/staff/staff_login/staff_login.html">ログイン画面へ</a>';
-    exit();
-}
+check_staff_login();
 
 /*
  * スタッフ一覧（staff_list）で押されたボタンによってアクションを変化させる

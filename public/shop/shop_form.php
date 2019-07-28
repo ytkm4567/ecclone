@@ -7,43 +7,39 @@ session_start();
 <head>
 <meta charset="UTF-8">
 <title>ECClone</title>
-<style>
-  .my-form {
-    margin : 0px 10px;
-  }
-</style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
 
 <?php include(dirname ( __FILE__ ).'/../member_navbar.php'); ?>
 
-<div class="card" style="margin: 10px 0px;">
+<div class="card page-title-margin">
   <div class="card-header">お客様情報を入力してください。</div>
 </div>
 
 <form method="post" action="/shop/shop_form_check.php">
-  <div class="card" style="margin: 15px;">
+  <div class="card card-margin">
     <div class="form-group">
       <label for="onamae">お名前：</label>
-      <input type="text" name="onamae" class="form-control my-form" placeholder="お名前を入力してください。" style="width:280px">
+      <input type="text" name="onamae" class="form-control my-form" placeholder="お名前を入力してください。">
     </div>
     <div class="form-group">
       <label for="email">メールアドレス：</label>
-      <input type="text" name="email" class="form-control my-form" placeholder="メールアドレスを入力してください。" style="width:350px">
+      <input type="text" name="email" class="form-control my-form" placeholder="メールアドレスを入力してください。">
     </div>
     <div class="form-group">
       <label for="postal">郵便番号：</label>
-      <input type="text" name="postal1" class="form-control my-form" placeholder="郵便番号3桁を入力してください。" style="width:100px">
-      <input type="text" name="postal2" class="form-control my-form" placeholder="郵便番号4桁を入力してください。" style="width:130px">
+      <input type="text" name="postal1" class="form-control my-form" placeholder="3桁を入力してください。">
+      <input type="text" name="postal2" class="form-control my-form" placeholder="4桁を入力してください。">
     </div>
     <div class="form-group">
       <label for="address">住所：</label>
-      <input type="text" name="address" class="form-control my-form" placeholder="住所を入力してください。" style="width: 95%;">
+      <input type="text" name="address" class="form-control my-form" placeholder="住所を入力してください。">
     </div>
     <div class="form-group">
       <label for="tel">電話番号：</label>
-      <input type="text" name="tel" class="form-control my-form" placeholder="電話番号を入力してください。" style="width:150px">
+      <input type="text" name="tel" class="form-control my-form" placeholder="電話番号を入力してください。">
     </div>
     <div class="form-check">
       <input type="radio" name="chumon" class="form-check-input" value="chumonkonkai" checked>
@@ -57,11 +53,11 @@ session_start();
     ※会員登録する方は以下の項目も入力してください。<br>
     <div class="form-group">
       <label for="pass">登録するパスワードを入力してください。：</label>
-      <input type="password" name="pass" class="form-control my-form" placeholder="パスワードを入力してください。" style="width:200px">
+      <input type="password" name="pass" class="form-control my-form" placeholder="パスワードを入力してください。">
     </div>
     <div class="form-group">
       <label for="pass2">登録するパスワードをもう一度入力してください。：</label>
-      <input type="password" name="pass2" class="form-control my-form" placeholder="パスワードをもう一度入力してください。" style="width:200px">
+      <input type="password" name="pass2" class="form-control my-form" placeholder="パスワードをもう一度入力してください。">
     </div>
     性別：<br>
     <div class="form-check">
@@ -74,7 +70,7 @@ session_start();
     </div>
     <div class="form-group">
     <label for="birth">生まれ年:</label>
-      <select name="birth" class="form-control my-form" style="width: 30%;">
+      <select name="birth" class="form-control my-form">
           <option value="1910">1910年代</option>
           <option value="1920">1920年代</option>
           <option value="1930">1930年代</option>
@@ -92,8 +88,8 @@ session_start();
     <br>
     <?php generate_csrf_token(); ?>
   </div>
-  <a href="/shop/shop_cartlook.php" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;">カートの中身確認へ戻る</a>
-  <input type="submit" class="btn btn-primary" value="入力内容の確認" style="padding: 6px 50px; margin: 0px 15px 0px 0px; float: right;">
+  <a href="/shop/shop_cartlook.php" class="btn btn-secondary btn-margin">カートの中身確認へ戻る</a>
+  <input type="submit" class="btn btn-primary btn-to-decide" value="入力内容の確認">
 </form>
 
 

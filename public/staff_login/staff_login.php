@@ -1,6 +1,11 @@
 <?php
 session_start();
 session_regenerate_id(true);
+
+if(isset($_SESSION['login'])==true) {
+  header('Location:/staff_login/staff_top.php');
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,25 +19,15 @@ session_regenerate_id(true);
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-<?php 
-
-include(dirname ( __FILE__ ).'/../member_navbar.php'); 
-
-if(isset($_SESSION['member_login'])==true) {
-  print 'すでにログインしています。<br>';
-  exit();
-}
-?>
-
 <div class="card page-title-margin">
-  <div class="card-header">会員ログイン</div>
+  <div class="card-header">スタッフログイン</div>
 </div>
 
-<form method="post" action="/member/member_login_check.php">
+<form method="post" action="/staff_login/staff_login_check.php">
   <div class="card card-margin card-bottom-padding">
     <div class="form-group">
-      <label for="email">登録メールアドレス：</label>
-      <input type="text" name="email" class="form-control my-form" placeholder="メールアドレスを入力してください。">
+      <label for="code">スタッフコード：</label>
+      <input type="text" name="code" class="form-control my-form" placeholder="コードを入力してください。">
     </div>
     <div class="form-group">
       <label for="pass">パスワード：</label>
@@ -43,6 +38,8 @@ if(isset($_SESSION['member_login'])==true) {
     </div>
   </div>
 </form>
+
+<a href="/index.php" class="btn btn-secondary btn-margin">ホーム画面へ</a> 
 
 </body>
 </html>

@@ -11,6 +11,7 @@ session_regenerate_id(true);
 <meta charset="UTF-8">
 <title>ECClone</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
 
@@ -26,7 +27,7 @@ try {
         $cart = $_SESSION['cart'];  // すでに入っている商品をcartへ一時退避
         $quantity = $_SESSION['quantity'];
         if(in_array($pro_code,$cart)==true) {
-            print '<div class="card" style="margin: 15px;">';
+            print '<div class="card card-margin">';
             print '<h5 class="card-header alert-danger">その商品はすでにカートに入っています。</h5>';
             print '<div class="card-body">';
             print '<a href="shop_list.php" class="btn btn-secondary">商品一覧に戻る</a>';
@@ -47,7 +48,7 @@ try {
 
 ?>
 
-<div class="card" style="margin: 15px;">
+<div class="card card-margin">
   <h5 class="card-header alert-success">カートに商品を追加しました。</h5>
   <div class="card-body">
     <a href="/shop/shop_list.php" class="btn btn-secondary">商品一覧に戻る</a>

@@ -9,6 +9,7 @@ session_start();
 <meta charset="UTF-8">
 <title>ECClone</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
 
@@ -93,7 +94,7 @@ if($chumon=='chumontouroku') {
 }
 
 if($okflg == true) {
-    print '<div class="card" style="margin: 15px;">';
+    print '<div class="card card-margin">';
     print '<h5 class="card-header alert-success">入力内容を確認してください。</h5>';
     print '<div class="card-body">';
     print $form_contents;
@@ -111,17 +112,17 @@ if($okflg == true) {
     print '<input type="hidden" name="pass" value="'.$pass.'">';
     print '<input type="hidden" name="gender" value="'.$gender.'">';
     print '<input type="hidden" name="birth" value="'.$birth.'">';
-    print '<input type="button" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;" onclick="history.back()" value="戻る">';
-    print '<input type="submit" class="btn btn-primary" value="購入を確定" style="padding: 6px 50px; margin: 0px 15px 0px 0px; float: right;">';
+    print '<input type="button" class="btn btn-secondary btn-margin" onclick="history.back()" value="戻る">';
+    print '<input type="submit" class="btn btn-primary btn-to-decide" value="購入を確定">';
     print '</form>';
 } else {
-    print '<div class="card" style="margin: 15px;">';
+    print '<div class="card card-margin">';
     print '<h5 class="card-header alert-danger">入力にエラーがあります。</h5>';
     print '<div class="card-body">';
     print $error_msg;
     print '</div></div>';
     print '<form>';
-    print '<input type="button" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;" onclick="history.back()" value="戻る">';
+    print '<input type="button" class="btn btn-secondary btn-margin" onclick="history.back()" value="戻る">';
     print '</form>';
 }
 ?>

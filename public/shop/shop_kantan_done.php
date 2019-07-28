@@ -12,6 +12,7 @@ session_regenerate_id(true);
 <meta charset="UTF-8">
 <title>ECClone</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
 
@@ -31,23 +32,27 @@ try {
     $address = $post['address'];
     $tel = $post['tel'];
 
+    $success_msg = '';
+
     if($onamae=='' || preg_match('/\A[\w\-\.]+\@[\w\-\.]+\.([a-z]+)\z/',$email)==0 || 
     preg_match('/\A[0-9]+\z/', $postal1)==0 && preg_match('/\A[0-9]+\z/', $postal2)==0 || 
     $address=='' || preg_match('/\A\d{2,5}-?\d{2,5}-?\d{4,5}\z/', $tel)==0) {
-        print '入力が不正です。';
+        print '<div class="card card-margin">';
+        print '<h5 class="card-header alert-danger">入力が不正です。</h5>';
+        print '</div>';
         print '<form>';
-        print '<input type="button" onclick="history.back()" value="戻る">';
+        print '<input type="button" class="btn btn-secondary btn-margin" onclick="history.back()" value="戻る">';
         print '</form>';
         exit();
     }
 
-    print $onamae.'様<br>';
-    print 'ご注文ありがとうございました。<br>';
-    print $email.'にメールを送りましたのでご確認ください。<br>';
-    print '商品は以下の住所に発送させていただきます。<br>';
-    print $postal1.'-'.$postal2.'<br>';
-    print $address.'<br>';
-    print $tel.'<br>';
+    $success_msg .= $onamae.'様<br>';
+    $success_msg .= 'ご注文ありがとうございました。<br>';
+    $success_msg .= $email.'にメールを送りましたのでご確認ください。<br>';
+    $success_msg .= '商品は以下の住所に発送させていただきます。<br>';
+    $success_msg .= $postal1.'-'.$postal2.'<br>';
+    $success_msg .= $address.'<br>';
+    $success_msg .= $tel.'<br>';
 
     // 自動返信メールの文章
     $honbun = order_header($onamae);
@@ -148,8 +153,15 @@ try {
 
 ?>
 
+<div class="card card-margin">
+  <h5 class="card-header alert-success">注文が完了しました。</h5>
+  <div class="card-body">
+    <?php print $success_msg; ?>
+  </div>
+</div>
+
 <br>
-<a href="/shop/shop_list.php">商品画面へ</a>
+<a href="/shop/shop_list.php" class="btn btn-primary btn-to-decide">商品一覧へ</a>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

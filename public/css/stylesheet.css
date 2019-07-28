@@ -1,0 +1,67 @@
+.top-wrapper {
+    height: 440px;
+    background-image: url(/images/top.jpg);
+    background-size: cover;
+    color: rgb(216, 97, 50);
+}
+
+.card-bottom-padding {
+    padding: 0px 0px 10px 0px;
+}
+
+.card-margin {
+    margin: 15px;
+}
+
+.posi-rela {
+    position: relative;
+}
+
+.btn-margin {
+    margin: 0 0 0 15px;
+}
+
+.posi-right {
+    position: absolute;
+    right: 30px;
+}
+
+.number-form {
+    width: 60px;
+}
+
+.page-title-margin {
+    margin-top: 10px;
+}
+
+.product-card {
+    width: 250px;
+    margin: 10px;
+}
+
+.btn-to-cart {
+    margin: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.btn-to-decide {
+    padding: 6px 50px;
+    margin: 0px 15px 0px 0px;
+    float: right;
+}
+
+.btn-to-login {
+    width: 50%;
+    padding: 6px 50px;
+}
+
+.btn-set-center {
+    text-align: center;
+}
+
+.my-form {
+    width: 95%;
+    margin : 0px 0px 5px 10px;
+}

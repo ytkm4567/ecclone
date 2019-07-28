@@ -11,12 +11,13 @@ session_regenerate_id(true);
 <meta charset="UTF-8">
 <title>ECClone</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
 
 <?php include(dirname ( __FILE__ ).'/../member_navbar.php'); ?>
 
-<div class="card" style="margin-top: 10px;">
+<div class="card page-title-margin">
   <div class="card-header">商品一覧</div>
 </div>
 
@@ -39,7 +40,7 @@ try {
             break;
         }
         print '<div class="col-sm-4">';
-        print '<div class="card" style="width: 250px; margin: 10px;">';
+        print '<div class="card product-card">';
         if($rec['image'] == '') {
             print '<img src="/product/images/no_image.jpg" class="card-img-top" alt="'.$rec['name'].'">';
         } else {

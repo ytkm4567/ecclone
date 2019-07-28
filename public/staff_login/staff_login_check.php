@@ -25,11 +25,11 @@ try {
         $_SESSION['login'] = 1;
         $_SESSION['staff_code'] = $staff_code;
         $_SESSION['staff_name'] = $rec['name'];
-        header('Location:staff_top.php');
+        header('Location:/staff_login/staff_top.php');
         exit();
     } else {
         print 'スタッフコードかパスワードが間違っています。<br>';
-        print '<a href="staff_login.html">戻る<a>';
+        print '<a href="/staff_login/staff_login.html">戻る<a>';
     }
 } catch(Exception $e) {
     print 'ただいま障害により大変ご迷惑おかけしております。';

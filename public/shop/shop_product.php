@@ -11,6 +11,7 @@ session_regenerate_id(true);
 <meta charset="UTF-8">
 <title>ECClone</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
 
@@ -47,7 +48,7 @@ try {
 
 ?>
 
-<div class="card" style="margin: 15px;">
+<div class="card card-margin">
   <div class="row no-gutters">
     <div class="col-md-4">
     <img src="<?php print $disp_image; ?>" class="card-img-top" alt="<?php print $pro_name; ?>">
@@ -59,16 +60,16 @@ try {
         <p class="card-text"><small class="text-muted">商品コード : <?php print $pro_code; ?></small></p>
       </div>
     </div>
-    <div class="col-md-2" style="position: relative;">
+    <div class="col-md-2 posi-rela">
       <div class="card-body">
-        <a class="btn btn-primary btn-lg" href="/shop/shop_cartin.php?procode=<?php print $pro_code; ?>" role="button" style="margin: 10px; position: absolute; right: 0; bottom: 0;">カートに入れる</a>
+        <a class="btn btn-primary btn-lg btn-to-cart" href="/shop/shop_cartin.php?procode=<?php print $pro_code; ?>" role="button">カートに入れる</a>
       </div>
     </div>
   </div>
 </div>
 
 <form>
-    <input type="button" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;" onclick="history.back()" value="戻る">
+    <input type="button" class="btn btn-secondary btn-margin" onclick="history.back()" value="戻る">
 </form>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
