@@ -1,4 +1,6 @@
 <?php
+require_once('../common.php');
+
 session_start();
 ?>
 <!DOCTYPE html>
@@ -6,13 +8,34 @@ session_start();
 <head>
 <meta charset="UTF-8">
 <title>ECClone</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">ECClone</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.php">ホーム<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../shop/shop_list.php">商品一覧</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <?php member_login_check()?>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <?php
-
-require_once('../common.php');
-
 $post = sanitize($_POST);
 
 check_csrf_token();
@@ -30,78 +53,72 @@ $gender = $post['gender'];
 $birth = $post['birth'];
 
 $okflg = true;
+$form_contents ='';
+$error_msg = '';
 
 if($onamae=='') {
-    print 'お名前が入力されていません。<br><br>';
+    $error_msg .= 'お名前が入力されていません。<br><br>';
     $okflg = false;
 } else {
-    print 'お名前 <br>';
-    print $onamae;
-    print '<br><br>';
+    $form_contents .= 'お名前 <br>'.$onamae.'<br><br>';
 }
 
 if(preg_match('/\A[\w\-\.]+\@[\w\-\.]+\.([a-z]+)\z/',$email)==0) {
-    print 'メールアドレスを正確に入力してください。<br><br>';
+    $error_msg .= 'メールアドレスを正確に入力してください。<br><br>';
     $okflg = false;
 } else {
-    print 'メールアドレス <br>';
-    print $email;
-    print '<br><br>';
+    $form_contents .= 'メールアドレス <br>'.$email.'<br><br>';
 }
 
-if(preg_match('/\A[0-9]+\z/', $postal1)==0 && preg_match('/\A[0-9]+\z/', $postal2)==0) {
-    print '郵便番号は半角数字で入力してください。<br><br>';
+if($postal1=='' || $postal2=='' || preg_match('/\A[0-9]{3}+\z/', $postal1)==0 || preg_match('/\A[0-9]{4}+\z/', $postal2)==0) {
+    $error_msg .= '郵便番号は半角数字で入力してください。<br><br>';
     $okflg = false;
 } else {
-    print '郵便番号 <br>';
-    print $postal1.'-'.$postal2;
-    print '<br><br>';
+    $form_contents .= '郵便番号 <br>'.$postal1.'-'.$postal2.'<br><br>';
 }
 
 if($address==''){
-    print '住所が入力されていません。<br><br>';
+    $error_msg .= '住所が入力されていません。<br><br>';
     $okflg = false;
 } else {
-    print '住所 <br>';
-    print $address;
-    print '<br><br>';
+    $form_contents .= '住所 <br>'.$address.'<br><br>';
 }
 
 if(preg_match('/\A\d{2,5}-?\d{2,5}-?\d{4,5}\z/', $tel)==0){
-    print '電話番号を正確に入力してください。<br><br>';
+    $error_msg .= '電話番号を正確に入力してください。<br><br>';
     $okflg = false;
 } else {
-    print '電話番号 <br>';
-    print $tel;
-    print '<br><br>';
+    $form_contents .= '電話番号 <br>'.$tel.'<br><br>';
 }
 
 if($chumon=='chumontouroku') {
     if($pass=='') {
-        print 'パスワードが入力されていません。<br><br>';
+        $error_msg .= 'パスワードが入力されていません。<br><br>';
         $okflg = false;
     }
 
     if($pass!=$pass2) {
-        print 'パスワードが一致しません。<br><br>';
+        $error_msg .= 'パスワードが一致しません。<br><br>';
         $okflg = false;
     }
 
-    print '性別<br>';
+    $form_contents .= '性別<br>';
     if($gender=='male') {
-        print '男性';
+        $form_contents .= '男性'.'<br><br>';
     } else {
-        print '女性';
+        $form_contents .= '女性'.'<br><br>';
     }
-    print '<br><br>';
 
-    print '生まれ年<br>';
-    print $birth;
-    print '年代';
-    print '<br><br>';
+    $form_contents .= '生まれ年<br>'.$birth.'年代'.'<br><br>';
 }
 
 if($okflg == true) {
+    print '<div class="card" style="margin: 15px;">';
+    print '<h5 class="card-header alert-success">入力内容を確認してください。</h5>';
+    print '<div class="card-body">';
+    print $form_contents;
+    print '</div></div>';
+
     print '<form method="post" action="shop_form_done.php">';
     generate_csrf_token();
     print '<input type="hidden" name="onamae" value="'.$onamae.'">';
@@ -114,14 +131,23 @@ if($okflg == true) {
     print '<input type="hidden" name="pass" value="'.$pass.'">';
     print '<input type="hidden" name="gender" value="'.$gender.'">';
     print '<input type="hidden" name="birth" value="'.$birth.'">';
-    print '<input type="button" onclick="history.back()" value="戻る">';
-    print '<input type="submit" value="OK"><br>';
+    print '<input type="button" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;" onclick="history.back()" value="戻る">';
+    print '<input type="submit" class="btn btn-primary" value="購入を確定" style="padding: 6px 50px; margin: 0px 15px 0px 0px; float: right;">';
     print '</form>';
 } else {
+    print '<div class="card" style="margin: 15px;">';
+    print '<h5 class="card-header alert-danger">入力にエラーがあります。</h5>';
+    print '<div class="card-body">';
+    print $error_msg;
+    print '</div></div>';
     print '<form>';
-    print '<input type="button" onclick="history.back()" value="戻る">';
+    print '<input type="button" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;" onclick="history.back()" value="戻る">';
     print '</form>';
 }
 ?>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

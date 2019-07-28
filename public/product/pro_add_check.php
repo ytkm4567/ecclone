@@ -6,7 +6,7 @@ session_start();
 session_regenerate_id(true);
 
 check_csrf_token();
-check_staff_login;
+check_staff_login();
 
 $post = sanitize($_POST);
 ?>

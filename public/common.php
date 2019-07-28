@@ -18,17 +18,23 @@ function check_staff_login() {
 }
 
 /*
- * member_login_check() : 会員としてログインしているかどうか判定する
+ * member_login_check() : 会員としてログインしているかどうか判定しナビバーに表示する
  */
 function member_login_check() {
     if(isset($_SESSION['member_login'])==false) {
         print 'ようこそ、ゲスト様　';
-        print '<a href="../member/member_login.html">ログイン画面へ</a><br>';
-        print '<br>';
+        print '</a>';
+        print '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
+        print '<a class="dropdown-item" href="shop_cartlook.php">カートを見る</a>';
+        print '<a class="dropdown-item" href="/ecclone/public/member/member_login.html">会員ログイン</a>';
+        print '</div>';
     } else {
         print 'ようこそ'.$_SESSION['member_name'].'様';
-        print '<a href="../member/member_logout.php">ログアウト</a><br>';
-        print '<br>';
+        print '</a>';
+        print '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
+        print '<a class="dropdown-item" href="shop_cartlook.php">カートを見る</a>';
+        print '<a class="dropdown-item" href="/ecclone/public/member/member_logout.php">ログアウト</a>';
+        print '</div>';
     }
 }
 

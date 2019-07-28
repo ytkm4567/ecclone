@@ -5,23 +5,45 @@ require_once('../mailtext.php');
 
 session_start();
 session_regenerate_id(true);
-
-$post = sanitize($_POST);
-
-check_csrf_token();
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ECClone</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">ECClone</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.php">ホーム<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../shop/shop_list.php">商品一覧</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <?php member_login_check()?>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <?php
+check_csrf_token();
 
 try {
+    $post = sanitize($_POST);   
+
     $onamae = $post['onamae'];
     $email = $post['email'];
     $postal1 = $post['postal1'];
@@ -33,34 +55,40 @@ try {
     $gender = $post['gender'];
     $birth = $post['birth'];
 
+    $success_msg = '';
+
     if($onamae=='' || preg_match('/\A[\w\-\.]+\@[\w\-\.]+\.([a-z]+)\z/',$email)==0 || 
     preg_match('/\A[0-9]+\z/', $postal1)==0 && preg_match('/\A[0-9]+\z/', $postal2)==0 || 
     $address=='' || preg_match('/\A\d{2,5}-?\d{2,5}-?\d{4,5}\z/', $tel)==0) {
-        print '入力が不正です。';
-        print '<form>';
-        print '<input type="button" onclick="history.back()" value="戻る">';
-        print '</form>';
-        exit();
+      print '<div class="card" style="margin: 15px;">';
+      print '<h5 class="card-header alert-danger">入力が不正です。</h5>';
+      print '</div>';
+      print '<form>';
+      print '<input type="button" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;" onclick="history.back()" value="戻る">';
+      print '</form>';
+      exit();
     }
 
     
     if($chumon=='chumontouroku') {
         if($pass=='') {
-            print '入力が不正です。';
-            print '<form>';
-            print '<input type="button" onclick="history.back()" value="戻る">';
-            print '</form>';
-            exit();
+          print '<div class="card" style="margin: 15px;">';
+          print '<h5 class="card-header alert-danger">入力が不正です。</h5>';
+          print '</div>';
+          print '<form>';
+          print '<input type="button" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;" onclick="history.back()" value="戻る">';
+          print '</form>';
+          exit();
         }
     }
 
-    print $onamae.'様<br>';
-    print 'ご注文ありがとうございました。<br>';
-    print $email.'にメールを送りましたのでご確認ください。<br>';
-    print '商品は以下の住所に発送させていただきます。<br>';
-    print $postal1.'-'.$postal2.'<br>';
-    print $address.'<br>';
-    print $tel.'<br>';
+    $success_msg .= $onamae.'様<br>';
+    $success_msg .= 'ご注文ありがとうございました。<br>';
+    $success_msg .= $email.'にメールを送りましたのでご確認ください。<br>';
+    $success_msg .= '商品は以下の住所に発送させていただきます。<br>';
+    $success_msg .= $postal1.'-'.$postal2.'<br>';
+    $success_msg .= $address.'<br>';
+    $success_msg .= $tel.'<br>';
 
     // 自動返信メールの文章
     $honbun = order_header($onamae);
@@ -167,9 +195,13 @@ try {
 
     // 入金先を本文に追加、会員登録する場合は登録完了メッセージも追加
     if($chumon==='chumontouroku') {
-        print nl2br(message_of_complete_regist_member());
+        $success_msg .= nl2br(message_of_complete_regist_member());
         $honbun .= order_kouza();
         $honbun .= message_of_complete_regist_member();
+
+        $_SESSION['member_login'] = 1;
+        $_SESSION['member_code'] = $lastmembercode;
+        $_SESSION['member_name'] = $onamae;
     } else {
         $honbun .= order_kouza();
     }
@@ -194,7 +226,17 @@ try {
 }
 ?>
 
-<br>
-<a href="shop_list.php">商品画面へ</a>
+<div class="card" style="margin: 15px;">
+  <h5 class="card-header alert-success">注文が完了しました。</h5>
+  <div class="card-body">
+    <?php print $success_msg; ?>
+  </div>
+</div>
+
+<a href="shop_list.php" class="btn btn-primary" style="padding: 6px 50px; margin: 0px 15px 0px 0px; float: right;">商品画面へ</a>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

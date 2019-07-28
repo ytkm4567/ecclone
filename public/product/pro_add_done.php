@@ -6,7 +6,7 @@ session_start();
 session_regenerate_id(true);
 
 check_csrf_token();
-check_staff_login;
+check_staff_login();
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@ try {
     $pro_image_name = $post['image_name'];
 
     // 入力が不正な場合戻るボタンのみ表示する
-    if($pro_name === '' || preg_match('/\A[0-9]+\z/', $pro_price) === 0 || $pro_image_name === '') {
+    if($pro_name === '' || preg_match('/\A[0-9]+\z/', $pro_price) === 0) {
         print '入力が不正です。';
         print '<form>';
         print '<input type="button" onclick="history.back()" value="戻る">';

@@ -4,7 +4,7 @@ require_once('../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
-check_staff_login;
+check_staff_login();
 ?>
 <!DOCTYPE html>
 <html>

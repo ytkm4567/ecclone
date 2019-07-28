@@ -24,7 +24,7 @@ for($i=0;$i<$max;$i++) {
 
 $cart = $_SESSION['cart'];
 
-for($i=0;$i<$max;$i++) {
+for($i=$max;$i>=0;$i--) {
     if(isset($post['sakujo'.$i])==true) {
         array_splice($cart, $i, 1);
         array_splice($quantity, $i, 1);
