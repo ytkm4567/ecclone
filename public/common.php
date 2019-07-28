@@ -26,14 +26,14 @@ function member_login_check() {
         print '</a>';
         print '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
         print '<a class="dropdown-item" href="shop_cartlook.php">カートを見る</a>';
-        print '<a class="dropdown-item" href="/ecclone/public/member/member_login.html">会員ログイン</a>';
+        print '<a class="dropdown-item" href="/member/member_login.html">会員ログイン</a>';
         print '</div>';
     } else {
         print 'ようこそ'.$_SESSION['member_name'].'様';
         print '</a>';
         print '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
         print '<a class="dropdown-item" href="shop_cartlook.php">カートを見る</a>';
-        print '<a class="dropdown-item" href="/ecclone/public/member/member_logout.php">ログアウト</a>';
+        print '<a class="dropdown-item" href="/member/member_logout.php">ログアウト</a>';
         print '</div>';
     }
 }
