@@ -8,7 +8,7 @@
 
 <?php
 
-require_once('../common.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
 
 session_start();
 session_regenerate_id(true);
@@ -18,12 +18,12 @@ check_staff_login();
 
 ショップ管理トップメニュー<br>
 <br>
-<a href="../staff/staff_list.php">スタッフ管理</a><br>
+<a href="/staff/staff_list.php">スタッフ管理</a><br>
 <br>
-<a href="../product/pro_list.php">商品管理</a><br>
+<a href="/product/pro_list.php">商品管理</a><br>
 <br>
-<a href="../order/order_download.php">注文ダウンロード</a>
+<a href="/order/order_download.php">注文ダウンロード</a>
 <br>
-<a href="staff_logout.php">ログアウト</a><br>
+<a href="/staff_login/staff_logout.php">ログアウト</a><br>
 </body>
 </html>

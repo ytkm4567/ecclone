@@ -8,7 +8,7 @@
 
 <?php
 
-require_once('../common.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
 
 session_start();
 session_regenerate_id(true);
@@ -46,7 +46,7 @@ if($staff_name === '' || $staff_pass === '' || $staff_pass !== $staff_pass2) {
     print '</form>';
 } else {
     $staff_pass = password_hash($staff_pass, PASSWORD_DEFAULT);
-    print '<form method="post" action="staff_edit_done.php">';
+    print '<form method="post" action="/staff/staff_edit_done.php">';
     print '<input type="hidden" name="code" value="'.$staff_code.'">';
     print '<input type="hidden" name="name" value="'.$staff_name.'">';
     print '<input type="hidden" name="pass" value="'.$staff_pass.'">';

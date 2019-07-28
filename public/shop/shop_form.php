@@ -1,5 +1,5 @@
 <?php
-require_once('../common.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ session_start();
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">ECClone</a>
+  <a class="navbar-brand" href="/index.php">ECClone</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,10 +24,10 @@ session_start();
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../index.php">ホーム<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/index.php">ホーム<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../shop/shop_list.php">商品一覧</a>
+        <a class="nav-link" href="/shop/shop_list.php">商品一覧</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -43,7 +43,7 @@ session_start();
   <div class="card-header">お客様情報を入力してください。</div>
 </div>
 
-<form method="post" action="shop_form_check.php">
+<form method="post" action="/shop/shop_form_check.php">
   <div class="card" style="margin: 15px;">
     <div class="form-group">
       <label for="onamae">お名前：</label>
@@ -113,7 +113,7 @@ session_start();
     <br>
     <?php generate_csrf_token(); ?>
   </div>
-  <a href="shop_cartlook.php" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;">カートの中身確認へ戻る</a>
+  <a href="/shop/shop_cartlook.php" class="btn btn-secondary" style="margin: 0px 0px 0px 15px;">カートの中身確認へ戻る</a>
   <input type="submit" class="btn btn-primary" value="入力内容の確認" style="padding: 6px 50px; margin: 0px 15px 0px 0px; float: right;">
 </form>
 

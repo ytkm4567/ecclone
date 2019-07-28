@@ -8,8 +8,8 @@
 
 <?php
 
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
@@ -42,7 +42,7 @@ try {
 <?php print $staff_code; ?>
 <br>
 <br>
-<form method="post" action="staff_edit_check.php">
+<form method="post" action="/staff/staff_edit_check.php">
     <input type="hidden" name="code" value="<?php print $staff_code; ?>">
     スタッフ名<br>
     <input type="text" name="name" style="width:200px" value="<?php print $staff_name;?>"> <br>

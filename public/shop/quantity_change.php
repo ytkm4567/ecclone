@@ -3,7 +3,7 @@
 session_start();
 session_regenerate_id(true);
 
-require_once('../common.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
 
 $post = sanitize($_POST);
 
@@ -34,5 +34,5 @@ for($i=$max;$i>=0;$i--) {
 $_SESSION['cart'] = $cart;
 $_SESSION['quantity'] = $quantity;
 
-header('Location:shop_cartlook.php');
+header('Location:/shop/shop_cartlook.php');
 exit();

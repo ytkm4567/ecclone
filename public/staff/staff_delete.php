@@ -8,8 +8,8 @@
 
 <?php
 
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
@@ -46,7 +46,7 @@ try {
 <?php print $staff_name;?><br>
 このスタッフを削除してよろしいですか？<br>
 <br>
-<form method="post" action="staff_delete_done.php">
+<form method="post" action="/staff/staff_delete_done.php">
     <input type="hidden" name="code" value="<?php print $staff_code; ?>">
     <?php generate_csrf_token(); ?>
     <input type="button" onclick="history.back()" value="戻る">

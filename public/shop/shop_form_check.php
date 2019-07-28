@@ -1,5 +1,5 @@
 <?php
-require_once('../common.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
 
 session_start();
 ?>
@@ -20,10 +20,10 @@ session_start();
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../index.php">ホーム<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/index.php">ホーム<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../shop/shop_list.php">商品一覧</a>
+        <a class="nav-link" href="/shop/shop_list.php">商品一覧</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -119,7 +119,7 @@ if($okflg == true) {
     print $form_contents;
     print '</div></div>';
 
-    print '<form method="post" action="shop_form_done.php">';
+    print '<form method="post" action="/shop/shop_form_done.php">';
     generate_csrf_token();
     print '<input type="hidden" name="onamae" value="'.$onamae.'">';
     print '<input type="hidden" name="email" value="'.$email.'">';

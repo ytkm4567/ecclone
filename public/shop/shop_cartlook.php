@@ -1,6 +1,6 @@
 <?php
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
@@ -22,10 +22,10 @@ session_regenerate_id(true);
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../index.php">ホーム<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/index.php">ホーム<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../shop/shop_list.php">商品一覧</a>
+        <a class="nav-link" href="/shop/shop_list.php">商品一覧</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -50,7 +50,7 @@ try {
     if($max===0) {
         print 'カートに商品が入っていません。<br>';
         print '<br>';
-        print '<a href="shop_list.php">商品一覧へ戻る</a>';
+        print '<a href="/shop/shop_list.php">商品一覧へ戻る</a>';
         exit();
     }
 
@@ -68,9 +68,9 @@ try {
         $pro_name[] = $rec['name'];
         $pro_price[] = $rec['price'];
         if($rec['image']=='') {
-            $pro_image[] = '<img src="../product/images/no_image.jpg">';
+            $pro_image[] = '<img src="/product/images/no_image.jpg">';
         } else {
-            $pro_image[] = '<img src="../product/images/'.$rec['image'].'">';
+            $pro_image[] = '<img src="/product/images/'.$rec['image'].'">';
         }
     }
 
@@ -83,7 +83,7 @@ try {
 
 ?>
 
-<form method="post" action="quantity_change.php">
+<form method="post" action="/shop/quantity_change.php">
   <div class="table-responsive">
     <table class="table table-condensed">
       <thead class="thead-dark">
@@ -114,15 +114,15 @@ try {
   <div class="row" style="position: relative; ">
     <input type="hidden" name="max" value="<?php print $max; ?>">
     <input type="submit" value="数量変更" class="btn btn-warning" style="margin: 20px;">
-    <a href="shop_list.php" class="btn btn-secondary" style="margin: 20px;">商品一覧に戻る</a>
-    <a href="shop_form.php" class="btn btn-primary" style="margin: 20px; position: absolute; right:0;">ご購入手続きへ進む</a>
+    <a href="/shop/shop_list.php" class="btn btn-secondary" style="margin: 20px;">商品一覧に戻る</a>
+    <a href="/shop/shop_form.php" class="btn btn-primary" style="margin: 20px; position: absolute; right:0;">ご購入手続きへ進む</a>
   </div>
 </form>
 <br>
 
 <?php
 if(isset($_SESSION["member_login"])==true) {
-    print '<a href="shop_kantan_check.php">かんたん注文へ進む</a>';
+    print '<a href="/shop/shop_kantan_check.php">かんたん注文へ進む</a>';
 }
 ?>
 

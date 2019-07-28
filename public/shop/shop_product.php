@@ -1,6 +1,6 @@
 <?php
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
@@ -34,11 +34,9 @@ try {
     $dbh = null;
 
     if($pro_image_name == '') {
-        // $disp_image = '<img src="../product/images/no_image.jpg">';
-        $disp_image = '../product/images/no_image.jpg';
+        $disp_image = '/product/images/no_image.jpg';
     } else {
-        // $disp_image = '<img src="../product/images/'.$pro_image_name.'">';
-        $disp_image = '../product/images/'.$pro_image_name;
+        $disp_image = '/product/images/'.$pro_image_name;
     }
 } catch (Exception $e) {
     print 'ただいま障害により大変ご迷惑をおかけしております。';
@@ -61,7 +59,7 @@ try {
     </div>
     <div class="col-md-2" style="position: relative;">
       <div class="card-body">
-        <a class="btn btn-primary btn-lg" href="shop_cartin.php?procode=<?php print $pro_code; ?>" role="button" style="margin: 10px; position: absolute; right: 0; bottom: 0;">カートに入れる</a>
+        <a class="btn btn-primary btn-lg" href="/shop/shop_cartin.php?procode=<?php print $pro_code; ?>" role="button" style="margin: 10px; position: absolute; right: 0; bottom: 0;">カートに入れる</a>
       </div>
     </div>
   </div>
@@ -74,6 +72,6 @@ try {
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="../load_navbar.js" type="text/javascript"></script>
+<script src="/load_navbar.js" type="text/javascript"></script>
 </body>
 </html>

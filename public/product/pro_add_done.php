@@ -1,6 +1,6 @@
 <?php
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);

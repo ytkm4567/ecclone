@@ -1,6 +1,6 @@
 <?php
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
@@ -48,14 +48,14 @@ try {
 <div class="card" style="margin: 15px;">
   <h5 class="card-header alert-success">カートに商品を追加しました。</h5>
   <div class="card-body">
-    <a href="shop_list.php" class="btn btn-secondary">商品一覧に戻る</a>
-    <a href="shop_cartlook.php" class="btn btn-primary">カートの中身を確認する</a>
+    <a href="/shop/shop_list.php" class="btn btn-secondary">商品一覧に戻る</a>
+    <a href="/shop/shop_cartlook.php" class="btn btn-primary">カートの中身を確認する</a>
   </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="../load_navbar.js" type="text/javascript"></script>
+<script src="/load_navbar.js" type="text/javascript"></script>
 </body>
 </html>

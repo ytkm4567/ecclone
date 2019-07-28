@@ -8,7 +8,7 @@
 function check_staff_login() {
     if(isset($_SESSION['login'])==false) {
         print 'ログインが必要です。<br>';
-        print '<a href="../staff_login/staff_login.html">ログイン画面へ</a>';
+        print '<a href="/staff_login/staff_login.html">ログイン画面へ</a>';
         exit();
     } else {
         print $_SESSION['staff_name'];
@@ -25,14 +25,14 @@ function member_login_check() {
         print 'ようこそ、ゲスト様　';
         print '</a>';
         print '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
-        print '<a class="dropdown-item" href="shop_cartlook.php">カートを見る</a>';
+        print '<a class="dropdown-item" href="/shop/shop_cartlook.php">カートを見る</a>';
         print '<a class="dropdown-item" href="/member/member_login.html">会員ログイン</a>';
         print '</div>';
     } else {
         print 'ようこそ'.$_SESSION['member_name'].'様';
         print '</a>';
         print '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
-        print '<a class="dropdown-item" href="shop_cartlook.php">カートを見る</a>';
+        print '<a class="dropdown-item" href="/shop/shop_cartlook.php">カートを見る</a>';
         print '<a class="dropdown-item" href="/member/member_logout.php">ログアウト</a>';
         print '</div>';
     }

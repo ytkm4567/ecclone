@@ -8,7 +8,7 @@
 
 <?php
 
-require_once('../common.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
 
 session_start();
 session_regenerate_id(true);

@@ -17,6 +17,6 @@ session_destroy();
 
 ログアウトしました。<br>
 <br>
-<a href="../staff_login/staff_login.html">ログイン画面へ</a>
+<a href="/staff_login/staff_login.html">ログイン画面へ</a>
 </body>
 </html>

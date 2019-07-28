@@ -1,7 +1,7 @@
 <?php
-require_once('../common.php');
-require_once('../mysqlconf.php');
-require_once('../mailtext.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../mailtext.php');
 
 session_start();
 session_regenerate_id(true);
@@ -23,10 +23,10 @@ session_regenerate_id(true);
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../index.php">ホーム<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/index.php">ホーム<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../shop/shop_list.php">商品一覧</a>
+        <a class="nav-link" href="/shop/shop_list.php">商品一覧</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -170,7 +170,7 @@ try {
 ?>
 
 <br>
-<a href="shop_list.php">商品画面へ</a>
+<a href="/shop/shop_list.php">商品画面へ</a>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

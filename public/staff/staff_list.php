@@ -8,8 +8,8 @@
 
 <?php
 
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
@@ -26,7 +26,7 @@ try {
 
     print 'スタッフ一覧<br><br>';
 
-    print '<form method="post" action="staff_branch.php">';
+    print '<form method="post" action="/staff/staff_branch.php">';
     while(true) {
         // SQL statementの結果から配列を生成して格納
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -49,6 +49,6 @@ try {
 ?>
 
 <br>
-<a href="../staff_login/staff_top.php">トップメニューへ</a><br>
+<a href="/staff_login/staff_top.php">トップメニューへ</a><br>
 </body>
 </html>

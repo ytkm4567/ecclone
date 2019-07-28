@@ -1,6 +1,6 @@
 <?php
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
@@ -22,10 +22,10 @@ session_regenerate_id(true);
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../index.php">ホーム<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/index.php">ホーム<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../shop/shop_list.php">商品一覧</a>
+        <a class="nav-link" href="/shop/shop_list.php">商品一覧</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -63,7 +63,7 @@ print '郵便番号<br>'.$postal1.'-'.$postal2.'<br><br>';
 print '住所<br>'.$address.'<br><br>';
 print '電話番号<br>'.$tel.'<br><br>';
 
-print '<form method="post" action="shop_kantan_done.php">';
+print '<form method="post" action="/shop/shop_kantan_done.php">';
 print '<input type="hidden" name="onamae" value="'.$onamae.'">';
 print '<input type="hidden" name="email" value="'.$email.'">';
 print '<input type="hidden" name="postal1" value="'.$postal1.'">';

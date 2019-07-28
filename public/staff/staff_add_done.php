@@ -7,10 +7,8 @@
 <body>
 
 <?php
-
-require_once('../common.php');
-require_once('../common.php');
-require_once('../mysqlconf.php');
+require_once(dirname ( __FILE__ ).'/../common.php');
+require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
 
 session_start();
 session_regenerate_id(true);
@@ -59,6 +57,6 @@ try {
 }
 ?>
 
-<a href="staff_list.php">戻る</a>
+<a href="/staff/staff_list.php">戻る</a>
 </body>
 </html>
