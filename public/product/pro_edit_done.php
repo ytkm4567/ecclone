@@ -57,7 +57,7 @@ try {
 
     if($pro_image_name_old !== $pro_image_name) {
         if($pro_image_name_old !== '') {
-            unlink('./images/'.$pro_image_name_old);
+            unlink('/product/images/'.$pro_image_name_old);
         }
     }
 

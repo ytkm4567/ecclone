@@ -23,7 +23,7 @@ check_staff_login();
 <body>
 
 ダウンロードしたい注文日を選んでください。<br>
-<form method="post" action="order_download_done.php">
+<form method="post" action="/order/order_download_done.php">
     <?php pulldown_year(); ?>
     年
     <?php pulldown_month(); ?>

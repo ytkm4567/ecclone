@@ -60,6 +60,6 @@ try {
 }
 ?>
 
-<a href="pro_list.php">戻る</a>
+<a href="/product/pro_list.php">戻る</a>
 </body>
 </html>

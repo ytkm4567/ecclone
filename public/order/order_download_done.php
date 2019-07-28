@@ -104,8 +104,8 @@ try {
 
 <a href="<?php print $filename; ?>">注文データのダウンロード</a><br>
 <br>
-<a href="order_download.php">日付選択へ</a><br>
+<a href="/order/order_download.php">日付選択へ</a><br>
 <br>
-<a href="../staff_login/staff_top.php">トップメニューへ</a><br>
+<a href="/staff_login/staff_top.php">トップメニューへ</a><br>
 </body>
 </html>

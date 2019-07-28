@@ -33,9 +33,9 @@ try {
     $dbh = null;
 
     if($pro_image_name == '') {
-        $disp_image = '<img src="../product/images/no_image.jpg">';
+        $disp_image = '<img src="/product/images/no_image.jpg">';
     } else {
-        $disp_image = '<img src="./images/'.$pro_image_name.'">';
+        $disp_image = '<img src="/product/images/'.$pro_image_name.'">';
     }
 } catch (Exception $e) {
     print 'ただいま障害により大変ご迷惑をおかけしております。';

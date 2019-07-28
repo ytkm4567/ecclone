@@ -25,11 +25,11 @@ try {
         $_SESSION['member_login'] = 1;
         $_SESSION['member_code'] = $rec['code'];
         $_SESSION['member_name'] = $rec['name'];
-        header('Location:../shop/shop_list.php');
+        header('Location:/shop/shop_list.php');
         exit();
     } else {
         print 'メールアドレスかパスワードが間違っています。<br>';
-        print '<a href="member_login.html">戻る<a>';
+        print '<a href="/member/member_login.html">戻る<a>';
     }
 } catch(Exception $e) {
     print 'ただいま障害により大変ご迷惑おかけしております。';

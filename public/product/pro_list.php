@@ -26,7 +26,7 @@ try {
 
     print '商品一覧<br><br>';
 
-    print '<form method="post" action="pro_branch.php">';
+    print '<form method="post" action="/product/pro_branch.php">';
     while(true) {
         // SQL statementの結果から配列を生成して格納
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -50,6 +50,6 @@ try {
 ?>
 
 <br>
-<a href="../staff_login/staff_top.php">トップメニューへ</a><br>
+<a href="/staff_login/staff_top.php">トップメニューへ</a><br>
 </body>
 </html>

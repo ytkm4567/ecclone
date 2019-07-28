@@ -33,9 +33,9 @@ try {
     $dbh = null;
 
     if($pro_image_name == '') {
-        $disp_image = '<img src="../product/images/no_image.jpg">';
+        $disp_image = '<img src="/product/images/no_image.jpg">';
     } else {
-        $disp_image = '<img src="./images/'.$pro_image_name.'">';
+        $disp_image = '<img src="/product/images/'.$pro_image_name.'">';
     }
 } catch (Exception $e) {
     print 'ただいま障害により大変ご迷惑をおかけしております。';
@@ -57,7 +57,7 @@ try {
 <?php print $disp_image;?><br>
 この商品を削除してよろしいですか？<br>
 <br>
-<form method="post" action="pro_delete_done.php">
+<form method="post" action="/product/pro_delete_done.php">
     <input type="hidden" name="code" value="<?php print $pro_code; ?>">
     <input type="hidden" name="image_name" value="<?php print $pro_image_name; ?>">
     <?php generate_csrf_token(); ?>

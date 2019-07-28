@@ -16,7 +16,7 @@ check_staff_login();
 
 商品追加<br>
 <br>
-<form method="post" action="pro_add_check.php" enctype="multipart/form-data">
+<form method="post" action="/product/pro_add_check.php" enctype="multipart/form-data">
     商品名を入力してください。<br>
     <input type="text" name="name" style="width:200px"><br>
     価格を入力してください。<br>

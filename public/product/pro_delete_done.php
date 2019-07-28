@@ -40,7 +40,7 @@ try {
     $dbh = null;
 
     if($pro_image_name !== '') {
-        unlink('./images/'.$pro_image_name);
+        unlink('/product/images/'.$pro_image_name);
     }
 
     print '削除しました。<br><br>';
@@ -52,6 +52,6 @@ try {
 }
 ?>
 
-<a href="pro_list.php">戻る</a>
+<a href="/product/pro_list.php">戻る</a>
 </body>
 </html>

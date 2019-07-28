@@ -42,8 +42,8 @@ if($pro_image['size'] > 0) {
     if($pro_image['size'] > 1000000) {
         print 'ファイルサイズが大きすぎます。';
     } else {
-        move_uploaded_file($pro_image['tmp_name'], './images/'.$pro_image['name']);
-        print '<img src="./images/'.$pro_image['name'].'">';
+        move_uploaded_file($pro_image['tmp_name'], '/product/images/'.$pro_image['name']);
+        print '<img src="/product/images/'.$pro_image['name'].'">';
         print '<br>';
     }
 }
@@ -55,7 +55,7 @@ if($pro_name === '' || preg_match('/\A[0-9]+\z/', $pro_price) === 0 || $pro_imag
     print '</form>';
 } else {
     print '上記の商品を追加します。';
-    print '<form method="post" action="pro_add_done.php">';
+    print '<form method="post" action="/product/pro_add_done.php">';
     print '<input type="hidden" name="name" value="'.$pro_name.'">';
     print '<input type="hidden" name="price" value="'.$pro_price.'">';
     print '<input type="hidden" name="image_name" value="'.$pro_image['name'].'">';
