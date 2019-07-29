@@ -1,4 +1,6 @@
 <?php
+session_start();
+session_regenerate_id(true);
 
 require_once(dirname ( __FILE__ ).'/../common.php');
 require_once(dirname ( __FILE__ ).'/../mysqlconf.php');
@@ -28,8 +30,11 @@ try {
         header('Location:/staff_login/staff_top.php');
         exit();
     } else {
-        print 'スタッフコードかパスワードが間違っています。<br>';
-        print '<a href="/staff_login/staff_login.html">戻る<a>';
+        print '<div class="card card-margin">';
+        print '<h5 class="card-header alert-danger">スタッフコードかパスワードが間違っています。</h5>';
+        print '<div class="card-body">';
+        print '<a href="/staff_login/staff_login.php" class="btn btn-secondary">戻る</a>';
+        print '</div></div>';
     }
 } catch(Exception $e) {
     print 'ただいま障害により大変ご迷惑おかけしております。';
