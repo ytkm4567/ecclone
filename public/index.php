@@ -21,11 +21,10 @@ session_regenerate_id(true);
   <hr class="my-4">
   <p>いますぐ下のボタンを押して新鮮な野菜の数々を見てみましょう。</p>
   <p>きっとあなたの食卓を美麗に彩る野菜に出会えるはずです。</p>
-  <a class="btn btn-primary btn-lg" href="/shop/shop_list.php" role="button">商品一覧へ</a>
+  <a href="/shop/shop_list.php" class="btn btn-primary btn-lg">商品一覧へ</a>
+  <a href="/member/member_login.php" class="btn btn-warning btn-lg btn-margin">会員ログイン</a><br>
 </div>
 
-<a href="/member/member_login.php">会員ログインはこちら</a><br>
-<br>
 <a href="/staff_login/staff_login.php">管理者ログイン</a>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

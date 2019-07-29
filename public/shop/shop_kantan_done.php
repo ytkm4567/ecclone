@@ -135,11 +135,11 @@ try {
     $honbun .= order_kouza();
     $honbun .= order_footer();
 
-    // お客様向けメール
-    autosend_mail($email, 'ご注文ありがとうございます', $honbun, 'From:info@rokumarunouen.co.jp');
+    // お客様向けメールを送信
+    autosend_mail($email, $onamae, 'ご注文ありがとうございます', $mail_text, 'ytkm555@gmail.com', 'ECClone');
 
-    // お店宛てメール
-    autosend_mail('ytkm555@gmail.com', 'お客様からご注文がありました。', $honbun, 'From:'.$email);
+    // お店宛てメールを送信
+    autosend_mail('ytkm555@gmail.com', 'ECClone', 'お客様からご注文がありました。', $mail_text, $email, $onamae);
 
     // ページ遷移フラグとカート内情報のセッション変数を解放
     unset($_SESSION['trans_page_flg']);
@@ -150,7 +150,6 @@ try {
     print 'ただいま障害により大変ご迷惑をおかけしております。';
     exit();
 }
-
 ?>
 
 <div class="card card-margin">

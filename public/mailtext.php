@@ -3,17 +3,17 @@
 // メール、およびHTMLの文章を戻り値として返す関数群
 
 function order_header($onamae) {
-    $honbun = '';
-    $honbun .= $onamae."様 \n\nこの度はご注文ありがとうございました。\n";
+    $honbun = "";
+    $honbun .= $onamae." 様 \n\nこの度はご注文ありがとうございました。\n";
     $honbun .= "\n";
-    $honbun .= "ご注文商品\n";
+    $honbun .= "ご注文商品¥n";
     $honbun .= "-----------------------------------\n";
 
     return $honbun;
 }
 
 function message_of_complete_regist_member() {
-    $message = '';
+    $message = "";
     $message .= "会員登録が完了いたしました。\n";
     $message .= "次回からメールアドレスとパスワードでログインしてください。\n";
     $message .= "ご注文が簡単にできるようになります。\n";
@@ -23,7 +23,7 @@ function message_of_complete_regist_member() {
 }
 
 function order_kouza() {
-    $honbun = '';
+    $honbun = "";
     $honbun .= "送料は無料です。\n";
     $honbun .= "-----------------------------------\n";
     $honbun .= "\n";
@@ -36,7 +36,7 @@ function order_kouza() {
 }
 
 function order_footer() {
-    $honbun = '';
+    $honbun = "";
     $honbun .= "□□□□□□□□□□□□□□□□□□□\n";
     $honbun .= "〜安心野菜のろくまる農園〜\n";
     $honbun .= "\n";
