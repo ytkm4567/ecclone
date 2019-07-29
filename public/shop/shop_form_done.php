@@ -190,8 +190,12 @@ try {
     // 署名を本文に追加
     $$mail_text .= order_footer();
 
+    print 'test1';
+
     // お客様向けメールを送信
     autosend_mail($email, $onamae, 'ご注文ありがとうございます', $$mail_text, 'ytkm555@gmail.com', 'ECClone');
+
+    print 'test2';
 
     // お店宛てメールを送信
     autosend_mail('ytkm555@gmail.com', 'ECClone', 'お客様からご注文がありました。', $$mail_text, $email, $onamae);
