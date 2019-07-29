@@ -37,6 +37,8 @@ try {
 
     $success_msg = '';
 
+    print 'test1';
+
     if($onamae=='' || preg_match('/\A[\w\-\.]+\@[\w\-\.]+\.([a-z]+)\z/',$email)==0 || 
     preg_match('/\A[0-9]+\z/', $postal1)==0 && preg_match('/\A[0-9]+\z/', $postal2)==0 || 
     $address=='' || preg_match('/\A\d{2,5}-?\d{2,5}-?\d{4,5}\z/', $tel)==0) {
@@ -62,6 +64,8 @@ try {
         }
     }
 
+    print 'test2';
+
     $success_msg .= $onamae.'様<br>';
     $success_msg .= 'ご注文ありがとうございました。<br>';
     $success_msg .= $email.'にメールを送りましたのでご確認ください。<br>';
@@ -77,6 +81,8 @@ try {
     $cart = $_SESSION['cart'];
     $quantity = $_SESSION['quantity'];
     $max = count($cart);
+
+    print 'test3';
 
     $dbh = new_pdo();
 
