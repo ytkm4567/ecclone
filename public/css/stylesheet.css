@@ -36,6 +36,7 @@
 
 .product-card {
     width: 250px;
+    height: 350px;
     margin: 10px;
 }
 
@@ -48,7 +49,7 @@
 
 .btn-to-decide {
     padding: 6px 50px;
-    margin: 0px 15px 0px 0px;
+    margin: 0px 15px 15px 0px;
     float: right;
 }
 
