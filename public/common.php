@@ -105,7 +105,7 @@ function pulldown_day() {
  * $from_name : 送信元名前
  */
 function autosend_mail($to_email, $to_name, $title, $mail_text, $from_email, $from_name) {
-
+    require 'vendor/autoload.php';
     $sendgrid_mail = new \SendGrid\Mail\Mail();
     $sendgrid_mail->setFrom($from_email, $from_name);
     $sendgrid_mail->setSubject($title);
