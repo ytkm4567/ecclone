@@ -38,7 +38,6 @@ try {
     print 'ただいま障害により大変ご迷惑をおかけしております。';
     exit();
 }
-
 ?>
 
 <form method="post" action="/staff/staff_delete_done.php">

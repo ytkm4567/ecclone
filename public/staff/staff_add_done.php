@@ -61,7 +61,6 @@ try {
     print '<div class="card-body">';
     print $staff_name.'さんを登録しました。';
     print '</div></div>';
-
 } catch(Exception $e) {
     print 'ただいま障害により大変ご迷惑をおかけしております。';
     print $e;

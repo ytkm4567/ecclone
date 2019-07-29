@@ -52,6 +52,12 @@
     float: right;
 }
 
+.btn-to-crud {
+    padding: 6px 25px;
+    margin: 0px 15px 15px 0px;
+    float: right;
+}
+
 .btn-to-login {
     width: 50%;
     padding: 6px 50px;
