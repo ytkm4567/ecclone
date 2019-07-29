@@ -97,15 +97,25 @@ function pulldown_day() {
 
 /*
  * sendmail() : お客様、お店にメールを自動送信する
- * $email : 宛先メールアドレス
+ * $to_email : 宛先メールアドレス
+ * $to_name : 宛先の名前
  * $title : メールの件名
- * $honbun : メールの本文
- * $header : メールヘッダ
+ * $mail_text : メールの本文
+ * $from_email : 送信元メールアドレス
+ * $from_name : 送信元名前
  */
-function autosend_mail($email, $title, $honbun, $header) {
-    $honbun = html_entity_decode($honbun, ENT_QUOTES, 'UTF-8');
-    mb_language('Japanese');
-    mb_internal_encoding('UTF-8');
-    mb_send_mail($email, $title, $honbun, $header);
+function autosend_mail($to_email, $to_name, $title, $mail_text, $from_email, $from_name) {
+
+    $sendgrid_mail = new \SendGrid\Mail\Mail();
+    $sendgrid_mail->setFrom($from_email, $from_name);
+    $sendgrid_mail->setSubject($title);
+    $sendgrid_mail->addTo($to_email, $to_name);
+    $sendgrid_mail->addContent("text/plain", $mail_text);
+    $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+    try {
+        $response = $sendgrid->send($sendgrid_mail);
+    } catch (Exception $e) {
+        print nl2br('Caught exception: '. $e->getMessage() ."\n");
+    }
 }
 ?>

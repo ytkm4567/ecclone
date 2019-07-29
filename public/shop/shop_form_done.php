@@ -72,7 +72,7 @@ try {
     $success_msg .= $tel.'<br>';
 
     // 自動返信メールの文章
-    $honbun = order_header($onamae);
+    $$mail_text = order_header($onamae);
 
     // カート内の情報を変数へ格納
     $cart = $_SESSION['cart'];
@@ -96,18 +96,16 @@ try {
         $suryo = $quantity[$i];
         $shokei = $price * $suryo;
 
-        $honbun .= $name.'';
-        $honbun .= $price.'円 x';
-        $honbun .= $suryo.'個 =';
-        $honbun .= $shokei."円 \n";
+        $$mail_text .= $name.'';
+        $$mail_text .= $price.'円 x';
+        $$mail_text .= $suryo.'個 =';
+        $$mail_text .= $shokei."円 \n";
     }
 
     // テーブルロック
     $sql = 'LOCK TABLES dat_sales WRITE, dat_sales_product WRITE, dat_member WRITE';
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
-
-    print 'test1';
 
     // 会員登録
     $lastmembercode=0;
@@ -169,8 +167,6 @@ try {
         $stmt->execute($data);
     }
 
-    print 'test2';
-
     // テーブルロックの解除
     $sql = 'UNLOCK TABLES';
     $stmt = $dbh->prepare($sql);
@@ -178,31 +174,27 @@ try {
 
     $dbh = null;
 
-    print 'test3';
-
     // 入金先を本文に追加、会員登録する場合は登録完了メッセージも追加
     if($chumon==='chumontouroku') {
         $success_msg .= nl2br(message_of_complete_regist_member());
-        $honbun .= order_kouza();
-        $honbun .= message_of_complete_regist_member();
+        $$mail_text .= order_kouza();
+        $$mail_text .= message_of_complete_regist_member();
 
         $_SESSION['member_login'] = 1;
         $_SESSION['member_code'] = $lastmembercode;
         $_SESSION['member_name'] = $onamae;
     } else {
-        $honbun .= order_kouza();
+        $$mail_text .= order_kouza();
     }
 
     // 署名を本文に追加
-    $honbun .= order_footer();
-
-    print 'test4';
+    $$mail_text .= order_footer();
 
     // お客様向けメールを送信
-    autosend_mail($email, 'ご注文ありがとうございます', $honbun, 'From:info@rokumarunouen.co.jp');
+    autosend_mail($email, $onamae, 'ご注文ありがとうございます', $$mail_text, 'ytkm555@gmail.com', 'ECClone');
 
     // お店宛てメールを送信
-    autosend_mail('ytkm555@gmail.com', 'お客様からご注文がありました。', $honbun, 'From:'.$email);
+    autosend_mail('ytkm555@gmail.com', 'ECClone', 'お客様からご注文がありました。', $$mail_text, $email, $onamae);
 
     // ページ遷移フラグとカート内情報のセッション変数を解放
     unset($_SESSION['trans_page_flg']);
