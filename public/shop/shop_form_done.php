@@ -37,7 +37,6 @@ try {
 
     $success_msg = '';
 
-    print 'test1';
 
     if($onamae=='' || preg_match('/\A[\w\-\.]+\@[\w\-\.]+\.([a-z]+)\z/',$email)==0 || 
     preg_match('/\A[0-9]+\z/', $postal1)==0 && preg_match('/\A[0-9]+\z/', $postal2)==0 || 
@@ -64,8 +63,6 @@ try {
         }
     }
 
-    print 'test2';
-
     $success_msg .= $onamae.'様<br>';
     $success_msg .= 'ご注文ありがとうございました。<br>';
     $success_msg .= $email.'にメールを送りましたのでご確認ください。<br>';
@@ -81,8 +78,6 @@ try {
     $cart = $_SESSION['cart'];
     $quantity = $_SESSION['quantity'];
     $max = count($cart);
-
-    print 'test3';
 
     $dbh = new_pdo();
 
@@ -105,6 +100,7 @@ try {
         $honbun .= $price.'円 x';
         $honbun .= $suryo.'個 =';
         $honbun .= $shokei."円 \n";
+        print 'test1';
     }
 
     // テーブルロック
@@ -197,6 +193,8 @@ try {
 
     // お客様向けメールを送信
     autosend_mail($email, 'ご注文ありがとうございます', $honbun, 'From:info@rokumarunouen.co.jp');
+
+    print 'test2';
 
     // お店宛てメールを送信
     autosend_mail('ytkm555@gmail.com', 'お客様からご注文がありました。', $honbun, 'From:'.$email);
