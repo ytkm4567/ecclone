@@ -8,7 +8,7 @@
 function check_staff_login() {
     if(isset($_SESSION['login'])==false) {
         print 'ログインが必要です。<br>';
-        print '<a href="/staff_login/staff_login.html">ログイン画面へ</a>';
+        print '<a href="/staff_login/staff_login.php">ログイン画面へ</a>';
         exit();
     }
 }

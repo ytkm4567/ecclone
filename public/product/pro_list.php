@@ -47,9 +47,9 @@ try {
         print '<div class="col-sm-3">';
         print '<div class="card product-card">';
         if($rec['image'] == '') {
-            print '<img src="/product/images/no_image.jpg" class="card-img-top" alt="'.$rec['name'].'">';
+            print '<img src="/product/images/no_image.jpg" class="card-img-top list-img" alt="'.$rec['name'].'">';
         } else {
-            print '<img src="/product/images/'.$rec['image'].'" class="card-img-top" alt="'.$rec['name'].'">';
+            print '<img src="/product/images/'.$rec['image'].'" class="card-img-top list-img" alt="'.$rec['name'].'">';
         }
         print '<div class="card-body">';
         //print '<h5 class="card-title">';
