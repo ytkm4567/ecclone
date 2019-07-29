@@ -72,7 +72,7 @@ try {
     $success_msg .= $tel.'<br>';
 
     // 自動返信メールの文章
-    $$mail_text = order_header($onamae);
+    $mail_text = order_header($onamae);
 
     // カート内の情報を変数へ格納
     $cart = $_SESSION['cart'];
@@ -96,10 +96,10 @@ try {
         $suryo = $quantity[$i];
         $shokei = $price * $suryo;
 
-        $$mail_text .= $name.'';
-        $$mail_text .= $price.'円 x';
-        $$mail_text .= $suryo.'個 =';
-        $$mail_text .= $shokei."円 \n";
+        $mail_text .= $name.'';
+        $mail_text .= $price.'円 x';
+        $mail_text .= $suryo.'個 =';
+        $mail_text .= $shokei."円 \n";
     }
 
     // テーブルロック
@@ -177,28 +177,24 @@ try {
     // 入金先を本文に追加、会員登録する場合は登録完了メッセージも追加
     if($chumon==='chumontouroku') {
         $success_msg .= nl2br(message_of_complete_regist_member());
-        $$mail_text .= order_kouza();
-        $$mail_text .= message_of_complete_regist_member();
+        $mail_text .= order_kouza();
+        $mail_text .= message_of_complete_regist_member();
 
         $_SESSION['member_login'] = 1;
         $_SESSION['member_code'] = $lastmembercode;
         $_SESSION['member_name'] = $onamae;
     } else {
-        $$mail_text .= order_kouza();
+        $mail_text .= order_kouza();
     }
 
     // 署名を本文に追加
-    $$mail_text .= order_footer();
-
-    print 'test1';
+    $mail_text .= order_footer();
 
     // お客様向けメールを送信
-    autosend_mail($email, $onamae, 'ご注文ありがとうございます', $$mail_text, 'ytkm555@gmail.com', 'ECClone');
-
-    print 'test2';
+    autosend_mail($email, $onamae, 'ご注文ありがとうございます', $mail_text, 'ytkm555@gmail.com', 'ECClone');
 
     // お店宛てメールを送信
-    autosend_mail('ytkm555@gmail.com', 'ECClone', 'お客様からご注文がありました。', $$mail_text, $email, $onamae);
+    autosend_mail('ytkm555@gmail.com', 'ECClone', 'お客様からご注文がありました。', $mail_text, $email, $onamae);
 
     // ページ遷移フラグとカート内情報のセッション変数を解放
     unset($_SESSION['trans_page_flg']);
