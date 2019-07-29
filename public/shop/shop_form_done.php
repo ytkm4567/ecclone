@@ -100,13 +100,14 @@ try {
         $honbun .= $price.'円 x';
         $honbun .= $suryo.'個 =';
         $honbun .= $shokei."円 \n";
-        print 'test1';
     }
 
     // テーブルロック
     $sql = 'LOCK TABLES dat_sales WRITE, dat_sales_product WRITE, dat_member WRITE';
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
+
+    print 'test1';
 
     // 会員登録
     $lastmembercode=0;
@@ -168,12 +169,16 @@ try {
         $stmt->execute($data);
     }
 
+    print 'test2';
+
     // テーブルロックの解除
     $sql = 'UNLOCK TABLES';
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
 
     $dbh = null;
+
+    print 'test3';
 
     // 入金先を本文に追加、会員登録する場合は登録完了メッセージも追加
     if($chumon==='chumontouroku') {
@@ -191,10 +196,10 @@ try {
     // 署名を本文に追加
     $honbun .= order_footer();
 
+    print 'test4';
+
     // お客様向けメールを送信
     autosend_mail($email, 'ご注文ありがとうございます', $honbun, 'From:info@rokumarunouen.co.jp');
-
-    print 'test2';
 
     // お店宛てメールを送信
     autosend_mail('ytkm555@gmail.com', 'お客様からご注文がありました。', $honbun, 'From:'.$email);
