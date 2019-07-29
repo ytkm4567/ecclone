@@ -17,10 +17,9 @@ session_regenerate_id(true);
 <body>
 
 <?php
+check_csrf_token();
 
 include(dirname ( __FILE__ ).'/../member_navbar.php');
-
-check_csrf_token();
 
 try {
     $post = sanitize($_POST);   
