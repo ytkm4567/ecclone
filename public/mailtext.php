@@ -6,7 +6,7 @@ function order_header($onamae) {
     $honbun = "";
     $honbun .= $onamae." 様 \n\nこの度はご注文ありがとうございました。\n";
     $honbun .= "\n";
-    $honbun .= "ご注文商品¥n";
+    $honbun .= "ご注文商品\n";
     $honbun .= "-----------------------------------\n";
 
     return $honbun;

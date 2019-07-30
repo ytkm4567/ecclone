@@ -5,6 +5,16 @@
     color: rgb(216, 97, 50);
 }
 
+.page-title-margin {
+    margin-top: 10px;
+}
+
+.product-card {
+    width: 250px;
+    height: 350px;
+    margin: 10px;
+}
+
 .card-bottom-padding {
     padding: 0px 0px 10px 0px;
 }
@@ -17,27 +27,22 @@
     position: relative;
 }
 
-.btn-margin {
-    margin: 0 0 0 15px;
-}
-
 .posi-right {
     position: absolute;
     right: 30px;
+}
+
+.my-form {
+    width: 95%;
+    margin : 0px 0px 5px 10px;
 }
 
 .number-form {
     width: 60px;
 }
 
-.page-title-margin {
-    margin-top: 10px;
-}
-
-.product-card {
-    width: 250px;
-    height: 350px;
-    margin: 10px;
+.btn-margin {
+    margin: 0 0 0 15px;
 }
 
 .btn-to-cart {
@@ -66,9 +71,4 @@
 
 .btn-set-center {
     text-align: center;
-}
-
-.my-form {
-    width: 95%;
-    margin : 0px 0px 5px 10px;
 }

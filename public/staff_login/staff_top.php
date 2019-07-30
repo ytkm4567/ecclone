@@ -1,11 +1,9 @@
 <?php
-
 require_once(dirname ( __FILE__ ).'/../common.php');
 
 session_start();
 session_regenerate_id(true);
 check_staff_login();
-
 ?>
 <!DOCTYPE html>
 <html>
