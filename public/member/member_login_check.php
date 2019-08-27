@@ -40,12 +40,12 @@ try {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         </head>
         <body>
-        <div class="card card-margin">
-        <h5 class="card-header alert-danger">メールアドレスかパスワードが間違っています。</h5>
-        </div>
-        <form>
-        <a href="/member/member_login.php" class="btn btn-secondary btn-margin">戻る</a>
-        </form>
+            <div class="card card-margin">
+                <h5 class="card-header alert-danger">メールアドレスかパスワードが間違っています。</h5>
+            </div>
+            <form>
+                <a href="/member/member_login.php" class="btn btn-secondary btn-margin">戻る</a>
+            </form>
         </body>
         </html>
     <?php }

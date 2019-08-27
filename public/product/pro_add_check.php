@@ -28,7 +28,7 @@ $pro_price = $post['price'];
 $pro_image = $_FILES['image'];
 
 $error_msg = '';
-$form_contents = '下記のスタッフを登録します。<br>';
+$form_contents = '下記の商品を登録します。<br>';
 
 // 商品名が空か
 if($pro_name === '') {
